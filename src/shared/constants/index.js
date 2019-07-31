@@ -6,6 +6,8 @@ export const padded = { padding: space[2] };
 
 export const borderWide = 2;
 
+export const safeArea = { flex: 1 };
+
 export const centered = {
   flex: 1,
   justifyContent: 'center',
