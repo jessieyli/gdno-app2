@@ -11,3 +11,6 @@ export {
   FormLabel,
   ButtonText,
 } from './Type';
+
+export { default as Touchable } from './Touchable';
+export { default as Button } from './Button';
