@@ -12,6 +12,7 @@ export {
   FormLabel,
   ButtonText,
 } from './Type';
+export { default as Paper } from './Paper';
 
 /* STAR SYSTEMS */
 export { default as Touchable } from './Touchable';
