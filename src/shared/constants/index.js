@@ -6,6 +6,12 @@ export const padded = { padding: space[2] };
 
 export const borderWide = 2;
 
+export const centered = {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
 export const verticallyCentered = {
   flex: 1,
   justifyContent: 'center',
@@ -18,3 +24,5 @@ export const LINKS = {
   help: 'mailto:help@growgardenio.zendesk.com',
   feedback: 'mailto:feedback@growgardenio.zendesk.com',
 };
+
+export * as PROPSHAPES from './propShapes';
