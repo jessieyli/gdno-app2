@@ -1,7 +1,7 @@
 import { performGet, performMultipleGet } from '../shared/data/rest';
 import handleError from '../shared/data/handleError';
 import {
-  keyTypes, getAllKeysOfType, setValue, removeKeys,
+  keyTypes, getAllKeysOfType, setValue, removeKeys, getValue
 } from './localStorage';
 import { airtableKey, airtableUrl } from '../shared/secrets';
 
@@ -38,6 +38,18 @@ export const loadStoredPlants = async () => {
     handleError(e);
     throw e;
   }
+};
+
+export const loadStoredPlantByName = async (name) => {
+  const key = keyifyName(name);
+  let plantInfo;
+  try {
+    plantInfo = await getValue(key);
+  } catch (e) {
+    handleError(e);
+    throw e;
+  }
+  return plantInfo;
 };
 
 const savePlantsToStorage = (plants) => {
