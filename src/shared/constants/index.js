@@ -25,4 +25,4 @@ export const LINKS = {
   feedback: 'mailto:feedback@growgardenio.zendesk.com',
 };
 
-export * as PROPSHAPES from './propShapes';
+export { default as PROPSHAPES } from './propShapes';
