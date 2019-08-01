@@ -82,6 +82,8 @@ Button.propTypes = {
     'gray',
     'medGray',
     'lightGray',
+    'danger',
+    'warning',
   ]),
   onPress: PropTypes.oneOfType([
     PropTypes.func,
