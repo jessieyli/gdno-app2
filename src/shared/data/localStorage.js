@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import handleError from '../shared/data/handleError';
+import handleError from './handleError';
 
 export const keyTypes = {
   plants: 'PLANTS',
@@ -78,9 +78,7 @@ export const getAllKeysOfType = async (type) => {
   return results;
 };
 
-// FOR DEBUGGING
-/* eslint-disable no-unused-vars */
-const clearKeys = async () => {
+export const clearKeys = async () => {
   let keys;
   try {
     keys = await AsyncStorage.getAllKeys();

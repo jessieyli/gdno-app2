@@ -2,7 +2,7 @@ import { performGet, performMultipleGet } from '../shared/data/rest';
 import handleError from '../shared/data/handleError';
 import {
   keyTypes, getAllKeysOfType, setValue, removeKeys, getValue
-} from './localStorage';
+} from '../shared/data/localStorage';
 import { airtableKey, airtableUrl } from '../shared/secrets';
 
 const keyifyName = name => name.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
