@@ -13,6 +13,7 @@ export {
   ButtonText,
 } from './Type';
 export { default as Paper } from './Paper';
+export { default as Media } from './Media';
 
 /* STAR SYSTEMS */
 export { default as Touchable } from './Touchable';
