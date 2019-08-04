@@ -1,4 +1,5 @@
 import { values } from 'lodash';
+import COLORS from './colors';
 
 export { default as COLORS } from './colors';
 
@@ -15,6 +16,24 @@ export const centered = {
   flex: 1,
   justifyContent: 'center',
   alignItems: 'center',
+};
+
+export const centeredHeader = {
+  headerMode: 'screen',
+  headerStyle: {
+    backgroundColor: '#ffffff',
+    textAlign: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.lightGray,
+  },
+  headerTintColor: COLORS.gray,
+  headerTitleStyle: {
+    color: COLORS.gray,
+    textAlign: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  }
 };
 
 export const verticallyCentered = {

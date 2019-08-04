@@ -56,3 +56,6 @@ buck-out/
 *.jsbundle
 
 src/shared/secrets.js
+*.jks
+.expo-shared
+.expo

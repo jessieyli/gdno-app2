@@ -4,13 +4,15 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "build-android": "expo build:android -t app-bundle"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
     "expo": "^34.0.1",
     "expo-web-browser": "^6.0.0",
+    "formik": "^1.5.8",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
@@ -20,7 +22,8 @@
     "react-native-reanimated": "~1.1.0",
     "react-native-unimodules": "~0.5.2",
     "react-native-web": "^0.11.4",
-    "react-navigation": "^3.11.1"
+    "react-navigation": "^3.11.1",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
