@@ -10,7 +10,7 @@ import {
   SectionTitle,
 } from '../../shared/components';
 import { styles } from '../careGuideConstants';
-import { COLORS, PROPSHAPES } from '../../shared/constants';
+import { PROPSHAPES } from '../../shared/constants';
 
 const ss = StyleSheet.create({
   ...styles,
@@ -22,7 +22,7 @@ const Enjoy = ({
   if (!info) return <ActivityIndicator />;
 
   return (
-    <View style={{ backgroundColor: COLORS.offWhite }}>
+    <View style={ss.main}>
       <View style={ss.topSection}>
         <Header>Enjoy</Header>
         <Body>

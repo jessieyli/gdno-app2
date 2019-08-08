@@ -8,8 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { COLORS, space, safeArea } from '../../shared/constants';
-import { SectionTitle } from '../../shared/components';
-import TitleBar from './TitleBar';
+import { SectionTitle, Touchable, Type } from '../../shared/components';
 
 const ss = StyleSheet.create({
   main: {
@@ -48,7 +47,9 @@ const StandardModal = ({
       <SafeAreaView style={ss.safeArea}>
         {header || (
         <View style={ss.horizontal}>
-          <TitleBar showBackButton showImage={false} onClickBack={onClose} />
+          <Touchable onPress={onClose}>
+            <Type color="gray" size={30}>X</Type>
+          </Touchable>
           {!!title && <SectionTitle uppercase color="medGray">{title}</SectionTitle>}
         </View>
         )}

@@ -102,7 +102,7 @@ class Essentials extends Component {
     if (!info) return <ActivityIndicator />;
 
     return (
-      <View style={{ backgroundColor: COLORS.offWhite }}>
+      <View style={ss.main}>
         {info.overview
           && (
           <View style={ss.topSection}>

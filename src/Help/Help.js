@@ -1,30 +1,35 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
-import {
-  Body,
-  Header,
-  Button,
-} from '../../shared/components';
-import { styles } from '../careGuideConstants';
-import { LINKS } from '../../shared/constants';
+
+import { Header, Body, Button } from '../shared/components';
+import { COLORS, LINKS, space } from '../shared/constants';
 
 const ss = StyleSheet.create({
-  ...styles
+  main: {
+    flex: 1,
+    backgroundColor: COLORS.offWhite,
+  },
+  section: {
+    paddingHorizontal: space[2],
+    paddingVertical: space[2],
+  },
+  topSection: {
+    paddingHorizontal: space[2],
+    paddingVertical: space[4],
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.lightGray,
+  },
 });
 
 const handleHelpPress = () => {
   WebBrowser.openBrowserAsync(LINKS.help);
 };
 
-const CareGuideIssues = () => (
+const HelpScreen = () => (
   <View style={ss.main}>
     <View style={ss.topSection}>
-      <Header>Issues</Header>
+      <Header>Help!</Header>
       <Body>
         If you&apos;re having plant problems I feel bad for you son... but we may know how
          to help! Go ahead and drop us a line -- this is a no judgement grow zone.
@@ -41,4 +46,4 @@ const CareGuideIssues = () => (
   </View>
 );
 
-export default CareGuideIssues;
+export default HelpScreen;

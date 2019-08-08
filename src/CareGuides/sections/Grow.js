@@ -13,7 +13,7 @@ import {
 } from '../../shared/components';
 import StandardModal from '../components/StandardModal';
 import {
-  COLORS, PROPSHAPES, space, verticallyCentered, padded
+  PROPSHAPES, space, verticallyCentered, padded
 } from '../../shared/constants';
 import { styles, allFeatures } from '../careGuideConstants';
 
@@ -53,7 +53,7 @@ const Grow = ({ info }) => {
   }
 
   return (
-    <View style={{ backgroundColor: COLORS.offWhite }}>
+    <View style={ss.main}>
       {info.overview
         && (
         <View style={ss.topSection}>

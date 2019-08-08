@@ -7,8 +7,9 @@
     "slug": "gdno",
     "privacy": "unlisted",
     "sdkVersion": "34.0.0",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "entryPoint": "node_modules/expo/AppEntry.js",
+    "icon": "./src/shared/assets/app-icon.png",
     "orientation": "portrait",
     "platforms": [
       "ios",
@@ -16,12 +17,12 @@
     ],
     "ios": {
       "bundleIdentifier": "com.growgardenio.gardenio",
-      "buildNumber": "0.2.0",
+      "buildNumber": "0.2.1",
       "supportsTablet": true
     },
     "android": {
       "package": "com.growgardenio.gardenio",
-      "versionCode": 4,
+      "versionCode": 5,
       "permissions": []
     }
   }

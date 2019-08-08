@@ -18,6 +18,10 @@ import frostSensitiveIcon from '../shared/assets/frost_sensitive.png';
 import frostTolerantIcon from '../shared/assets/frost_tolerant.png';
 
 export const styles = {
+  main: {
+    backgroundColor: COLORS.offWhite,
+    flex: 1,
+  },
   section: {
     paddingHorizontal: space[2],
     paddingVertical: space[2],

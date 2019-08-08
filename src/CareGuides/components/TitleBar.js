@@ -19,6 +19,9 @@ const ss = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? space[0] : StatusBar.currentHeight + space[0],
     alignItems: 'center',
   },
+  backButton: {
+    paddingHorizontal: space[2],
+  },
   button: {
     width: 30,
     alignItems: 'flex-start',
@@ -44,11 +47,11 @@ const TitleBar = ({
   <View style={ss.container}>
     {showBackButton
       && (
-      <View style={ss.button}>
         <Touchable onPress={onClickBack}>
-          <Type color="gray" size={30}>{'<'}</Type>
+          <View style={ss.backButton}>
+            <Type color="gray" size={30}>{'<'}</Type>
+          </View>
         </Touchable>
-      </View>
       )
     }
     <View style={ss.main}>

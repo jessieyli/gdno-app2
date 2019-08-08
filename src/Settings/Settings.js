@@ -128,7 +128,7 @@ const SettingsScreen = () => {
             )}
           </Formik>
           <View style={{ marginVertical: space[2] }}>
-            <Button inverted color="danger" onPress={handlePressClear}>Clear All Data</Button>
+            <Button inverted color="danger" onPress={handlePressClear}>Clear All Plant & Settings Data</Button>
           </View>
         </View>
       </SafeAreaView>

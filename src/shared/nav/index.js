@@ -5,6 +5,7 @@ import Home from '../../Home/Home';
 import MyCareGuides from '../../CareGuides/MyCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
 import Settings from '../../Settings/Settings';
+import Help from '../../Help/Help';
 import GettingStarted from '../../GettingStarted/GettingStarted';
 import { centeredHeader } from '../constants';
 import { Touchable, Body } from '../components';
@@ -27,6 +28,7 @@ const MainNavigation = createStackNavigator(
     },
     CareGuides: MyCareGuides,
     CareGuide,
+    Help,
     Settings: {
       screen: Settings,
       path: 'settings',

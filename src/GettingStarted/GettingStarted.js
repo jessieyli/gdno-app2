@@ -3,11 +3,16 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { SectionTitle, Body } from '../shared/components';
 import { COLORS, space } from '../shared/constants';
+import step1 from '../shared/assets/gettingstarted_step1.png';
+import step2 from '../shared/assets/gettingstarted_step2.png';
+import step3 from '../shared/assets/gettingstarted_step3.png';
+import step5 from '../shared/assets/gettingstarted_step5.png';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +30,8 @@ const styles = StyleSheet.create({
   imageBlock: {
     marginBottom: space[1],
     alignItems: 'center',
+    width: 375,
+    height: 207,
   },
   imagePlaceholder: {
     backgroundColor: COLORS.lightGray,
@@ -39,9 +46,10 @@ const styles = StyleSheet.create({
 const GettingStarted = () => (
   <ScrollView contentContainerStyle={styles.container}>
     <View style={styles.section}>
-      <View style={styles.imagePlaceholder}>
-        <Body weight="bold" color="white">Image Not Available</Body>
-      </View>
+      <Image
+        style={styles.imageBlock}
+        source={step1}
+      />
       <SectionTitle>1. Unpack the Box.</SectionTitle>
       <Body>
 Bust out your plant(s), your soil, mulch if you have it, and the container.
@@ -49,9 +57,10 @@ Bust out your plant(s), your soil, mulch if you have it, and the container.
       </Body>
     </View>
     <View style={styles.section}>
-      <View style={styles.imagePlaceholder}>
-        <Body weight="bold" color="white">Image Not Available</Body>
-      </View>
+      <Image
+        style={styles.imageBlock}
+        source={step2}
+      />
       <SectionTitle>2. Get Your Hands Dirty.</SectionTitle>
       <Body>
 Throw soil in the container like a madperson. If you’ve got a small container,
@@ -62,9 +71,10 @@ Throw soil in the container like a madperson. If you’ve got a small container,
       </Body>
     </View>
     <View style={styles.section}>
-      <View style={styles.imagePlaceholder}>
-        <Body weight="bold" color="white">Image Not Available</Body>
-      </View>
+      <Image
+        style={styles.imageBlock}
+        source={step3}
+      />
       <SectionTitle>3. Transplant.</SectionTitle>
       <Body>
 Soak the soil of your baby plant (not the leaves) with water to make it nice and
@@ -93,9 +103,10 @@ Some plants boxes contain mulch, which is just a word for organic stuff you thro
       </Body>
     </View>
     <View style={styles.finalSection}>
-      <View style={styles.imagePlaceholder}>
-        <Body weight="bold" color="white">Image Not Available</Body>
-      </View>
+      <Image
+        style={styles.imageBlock}
+        source={step5}
+      />
       <SectionTitle>5. Seal the deal</SectionTitle>
       <Body>
 Oh man, this has been fun. Lightly water the soil (not the foliage!) to seal the
