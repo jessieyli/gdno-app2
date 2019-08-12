@@ -5,10 +5,13 @@
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
-    "build-android": "expo build:android -t app-bundle"
+    "build-android": "expo build:android -t app-bundle",
+    "ios-mini": "react-native run-ios --configuration Release",
+    "andoird-mini": "react-native run-android --version release",
+    "devices": "xcrun simctl list devices",
+    "start-release": "expo start --no-dev --minify"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.1",
     "axios": "^0.19.0",
     "expo": "^34.0.1",
     "expo-web-browser": "^6.0.0",
