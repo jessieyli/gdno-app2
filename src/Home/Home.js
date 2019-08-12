@@ -3,10 +3,12 @@ import {
   StyleSheet,
   View,
   Platform,
+  Alert,
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import PropTypes from 'prop-types';
 
+import handleError from '../shared/data/handleError';
 import { Button, Media } from '../shared/components';
 import { LINKS, verticallyCentered, space } from '../shared/constants';
 
@@ -27,13 +29,34 @@ const styles = StyleSheet.create({
 });
 
 export default class HomeScreen extends Component {
+  handleIosMailto = (link) => {
+    const cleanedLink = link.replace('mailto:', '');
+    Alert.alert(
+      'Email us!',
+      cleanedLink,
+      [
+        {
+          text: 'Got it',
+          onPress: () => {},
+          style: 'cancel',
+        },
+      ],
+    );
+  }
+
   handleOpenLink = (path) => {
     // TODO check and handle deep link before opening
+    const url = LINKS[path] || LINKS.shop;
     if (path === 'help' && Platform.OS === 'ios') {
       this.props.navigation.navigate('Help');
+    } else if (Platform.OS === 'ios' && url.indexOf('mailto:') >= 0) {
+      this.handleIosMailto(url);
     } else {
-      const url = LINKS[path] || LINKS.shop;
-      WebBrowser.openBrowserAsync(url);
+      try {
+        WebBrowser.openBrowserAsync(url);
+      } catch (e) {
+        handleError(e);
+      }
     }
   }
 
