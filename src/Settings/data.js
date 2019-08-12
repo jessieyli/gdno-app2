@@ -39,6 +39,5 @@ export const saveSettings = async ({
   if (firstName) keypairs.push([`${prefix}firstName`, firstName]);
   if (lastName) keypairs.push([`${prefix}lastName`, lastName]);
   if (zipcode) keypairs.push([`${prefix}zipcode`, zipcode]);
-  console.log(keypairs);
   setMultipleValues(keypairs);
 };

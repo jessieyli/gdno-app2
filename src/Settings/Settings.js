@@ -29,7 +29,7 @@ const validationSchema = yup.object().shape({
 
 const ss = StyleSheet.create({
   container: {
-    padding: space[1],
+    padding: space[2],
   },
   safeArea,
 });

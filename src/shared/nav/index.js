@@ -26,7 +26,12 @@ const MainNavigation = createStackNavigator(
         ),
       }),
     },
-    CareGuides: MyCareGuides,
+    CareGuides: {
+      screen: MyCareGuides,
+      navigationOptions: () => ({
+        headerTitle: 'My Plants'
+      }),
+    },
     CareGuide,
     Help,
     Settings: {
