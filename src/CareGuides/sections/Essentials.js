@@ -47,13 +47,15 @@ class Essentials extends Component {
 
   onClickFeature = (category) => {
     const { info } = this.props;
-    const { text, detailKey } = allFeatures[category][info[category]];
+    const { text, detailKey, content } = allFeatures[category][info[category]];
+    const modalContent = detailKey && info[detailKey] ? info[detailKey] : content;
+
     this.setState({
       isFeatureDetailsModalOpen: true,
       featureDetails: {
         title: text,
         category: `${info.Herb} • ${category}`,
-        content: (detailKey && info[detailKey]) || 'More coming soon.',
+        content: modalContent || 'More coming soon'
       }
     });
   }

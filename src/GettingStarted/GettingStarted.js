@@ -86,9 +86,6 @@ Soak the soil of your baby plant (not the leaves) with water to make it nice and
       </Body>
     </View>
     <View style={styles.section}>
-      <View style={styles.imagePlaceholder}>
-        <Body weight="bold" color="white">Image Not Available</Body>
-      </View>
       <SectionTitle>4. Mulch It, Baby</SectionTitle>
       <Body>
 Some plants boxes contain mulch, which is just a word for organic stuff you throw

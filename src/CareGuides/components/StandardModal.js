@@ -27,6 +27,10 @@ const ss = StyleSheet.create({
     paddingHorizontal: space[2],
   },
   safeArea,
+  closeButton: {
+    padding: space[1],
+    width: 50,
+  }
 });
 
 const StandardModal = ({
@@ -48,7 +52,9 @@ const StandardModal = ({
         {header || (
         <View style={ss.horizontal}>
           <Touchable onPress={onClose}>
-            <Type color="gray" size={30}>X</Type>
+            <View style={ss.closeButton}>
+              <Type color="gray" size={30}>X</Type>
+            </View>
           </Touchable>
           {!!title && <SectionTitle uppercase color="medGray">{title}</SectionTitle>}
         </View>
