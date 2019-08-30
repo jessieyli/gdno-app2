@@ -42,7 +42,12 @@ const MainNavigation = createStackNavigator(
         ...centeredHeader,
       }),
     },
-    GettingStarted,
+    GettingStarted: {
+      screen: GettingStarted,
+      navigationOptions: () => ({
+        headerTitle: 'Getting Started'
+      }),
+    },
   },
   {
     initialRouteName: 'Home'
