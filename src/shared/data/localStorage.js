@@ -22,6 +22,8 @@ export const setValue = async (key, value) => {
 
 export const getValue = async (key) => {
   let value;
+
+  // throw { message: 'something failed' };
   try {
     value = await AsyncStorage.getItem(`@GDNO_${key}`);
   } catch (e) {
@@ -35,7 +37,7 @@ export const getValue = async (key) => {
   }
 };
 
-export const setMultipleValues = async keypairs => AsyncStorage.multiSet(keypairs);
+export const setMultipleValues = keypairs => AsyncStorage.multiSet(keypairs);
 
 export const getMultipleValues = async (keys) => {
   let values;

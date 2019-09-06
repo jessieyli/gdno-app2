@@ -4,8 +4,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { FormLabel } from '../../shared/components';
-import { space, COLORS } from '../../shared/constants';
+import { FormLabel } from './Type';
+import { space, COLORS } from '../constants';
 
 const StyledInput = ({
   label, formProps, formKey, ...rest

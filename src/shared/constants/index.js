@@ -1,7 +1,7 @@
 import { values } from 'lodash';
 import COLORS from './colors';
 
-export { default as COLORS } from './colors';
+export { default as COLORS, colorKeys } from './colors';
 
 /* STYLES */
 export const space = [4, 8, 16, 24, 32, 40];
@@ -72,3 +72,10 @@ export const detailsScreens = {
 export const detailsScreensArray = values(detailsScreens);
 
 export { default as PROPSHAPES } from './propShapes';
+
+export const hitSlop = {
+  left: 20,
+  top: 20,
+  right: 20,
+  bottom: 20,
+};

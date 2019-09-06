@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { StyledInput, SettingDisplay } from './components';
+import SettingDisplay from './components/SettingDisplay';
 import { space, safeArea } from '../shared/constants';
-import { Button } from '../shared/components';
+import { StyledInput, Button } from '../shared/components';
 import { saveSettings, defaultSettings, getSettings } from './data';
 import { clearKeys } from '../shared/data/localStorage';
 
