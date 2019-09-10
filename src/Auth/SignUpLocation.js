@@ -10,8 +10,11 @@ import * as yup from 'yup';
 import {
   Body, Header, Media, Touchable, StyledInput,
 } from '../shared/components';
-import { safeArea, centered, space } from '../shared/constants';
-import { saveSettings } from './data';
+import {
+  safeArea, centered, space, PROPSHAPES
+} from '../shared/constants';
+import { useAuth } from '../shared/use-auth';
+import { addUserSettings } from './data';
 
 const validationSchema = yup.object().shape({
   zipcode: yup
@@ -39,12 +42,15 @@ const styles = StyleSheet.create({
 });
 
 const SignUpLocation = ({ navigation }) => {
+  const auth = useAuth();
+
   const handleSubmit = (values) => {
-    saveSettings(values)
-      .then(() => {
+    addUserSettings(auth.user.uid, { ...values })
+      .finally(() => {
         navigation.navigate('Home');
       });
   };
+
   return (
     <SafeAreaView
       style={styles.safeArea}
@@ -93,6 +99,10 @@ const SignUpLocation = ({ navigation }) => {
       </Formik>
     </SafeAreaView>
   );
+};
+
+SignUpLocation.propTypes = {
+  navigation: PROPSHAPES.navigation.isRequired,
 };
 
 export default SignUpLocation;

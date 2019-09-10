@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import * as firebase from 'firebase/app';
-import { firebaseConfig } from './src/shared/secrets';
 import Nav from './src/shared/nav';
 import AuthNav from './src/Auth/nav';
 import AuthLoadingScreen from './src/Auth/AuthLoading';
+import { ProvideAuth } from './src/shared/use-auth';
 
 const AppContainer = createAppContainer(createSwitchNavigator(
   {
@@ -17,20 +16,10 @@ const AppContainer = createAppContainer(createSwitchNavigator(
   }
 ));
 
-class App extends Component {
-  componentDidMount() {
-    firebase.initializeApp(firebaseConfig);
-  }
-
-  render() {
-    return (
-      <AppContainer
-        ref={(nav) => {
-          this.navigator = nav;
-        }}
-      />
-    );
-  }
-}
+const App = () => (
+  <ProvideAuth>
+    <AppContainer />
+  </ProvideAuth>
+);
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,8 +6,6 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
 
 import {
   Body, ErrorState, Header, Media, Touchable, StyledInput, ButtonText, PageLoader,
@@ -15,7 +13,9 @@ import {
 import {
   safeArea, centered, space, hitSlop, PROPSHAPES
 } from '../shared/constants';
-import { saveUserAsSettings } from './data';
+import { useAuth } from '../shared/use-auth';
+import handleError from '../shared/data/handleError';
+import { addUserSettings, storeUser } from './data';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -46,38 +46,42 @@ const styles = StyleSheet.create({
   }
 });
 
-const logInFail = 'We weren\'t able to log you in automatically.';
-
 const SignUpEmail = ({ navigation }) => {
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const auth = useAuth();
+  const { params } = navigation.state;
+
+  useEffect(() => {
+    if (loading && auth.user) {
+      addUserSettings(auth.user.uid, {
+        ...auth.user,
+        ...params,
+      })
+        .then(() => {
+          storeUser(auth.user);
+          navigation.navigate('SignUpLocation');
+        })
+        .catch((e) => {
+          handleError(e);
+          setError('Something went wrong. Please try again later.');
+        });
+    }
+
+    return () => setLoading(false);
+  }, [loading, auth, params]);
 
   const handleSubmit = async (values) => {
-    setLoading('Creating account…');
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(values.email, values.password)
-      .then((account) => {
-        const user = firebase.auth().currentUser;
-        console.log({ user });
-        console.log({ account });
-        saveUserAsSettings(user)
-          .then(() => {
-            navigation.navigate('SignUpLocation');
-          })
-          .catch(() => {
-            setLoading(null);
-            setError(logInFail);
-          });
-      })
+    setLoading(true);
+    auth.signup(values.email, values.password)
       .catch((e) => {
-        setLoading(null);
+        setLoading(false);
         setError(e.message);
       });
   };
 
   if (loading) {
-    return (<PageLoader label={loading} />);
+    return (<PageLoader />);
   }
 
   if (error) {
@@ -85,14 +89,8 @@ const SignUpEmail = ({ navigation }) => {
       <SafeAreaView style={styles.safeArea}>
         <ErrorState
           details={error}
-          callToAction={error === logInFail ? 'Log In' : 'Try Again'}
-          action={() => {
-            if (error === logInFail) {
-              navigation.navigate('LogIn');
-            } else {
-              setError(null);
-            }
-          }}
+          callToAction="Okay"
+          action={() => setError(null)}
         />
       </SafeAreaView>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -9,12 +9,11 @@ import * as yup from 'yup';
 
 import GrowerTypeButtonGroup from './components/StyledButtonGroup';
 import {
-  Body, Header, ButtonText, Media, Touchable, StyledInput, PageLoader,
+  Body, Header, ButtonText, Media, Touchable, StyledInput,
 } from '../shared/components';
 import {
   safeArea, centered, space, hitSlop, PROPSHAPES
 } from '../shared/constants';
-import { saveSettings, getSettings } from './data';
 
 const validationSchema = yup.object().shape({
   firstName: yup
@@ -47,35 +46,16 @@ const styles = StyleSheet.create({
 });
 
 const SignUp = ({ navigation }) => {
-  const [loadingSettings, setLoadingSettings] = useState(true);
-  const [defaultSettings, setDefaultSettings] = useState({
+  const defaultSettings = {
     firstName: '',
     lastName: '',
     growerType: '',
-  });
-
-  useEffect(() => {
-    getSettings()
-      .then((settings) => {
-        if (settings.firstName && settings.lastName && settings.growerType) {
-          navigation.navigate('SignUpEmail');
-        } else {
-          setDefaultSettings({ ...defaultSettings, ...settings });
-          setLoadingSettings(false);
-        }
-      });
-  }, []);
-
-  const handleSubmit = (values) => {
-    saveSettings(values)
-      .then(() => {
-        navigation.navigate('SignUpEmail');
-      });
   };
 
-  if (loadingSettings) {
-    return (<PageLoader />);
-  }
+  const handleSubmit = (values) => {
+    navigation.navigate('SignUpEmail', { ...values });
+  };
+
   return (
     <SafeAreaView
       style={styles.safeArea}

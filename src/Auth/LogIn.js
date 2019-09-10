@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,8 +7,7 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import { useAuth } from '../shared/use-auth';
 
 import {
   Button, ErrorState, Header, Media, Touchable, StyledInput, ButtonText
@@ -16,7 +15,7 @@ import {
 import {
   safeArea, centered, space, hitSlop, PROPSHAPES
 } from '../shared/constants';
-import { saveUserAsSettings } from './data';
+import { storeUser } from './data';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -48,24 +47,27 @@ const styles = StyleSheet.create({
 });
 
 const LogIn = ({ navigation }) => {
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [loginTries, setLoginTries] = useState(0);
+  const auth = useAuth();
 
   const handleSubmit = (values) => {
     setLoading(true);
-    firebase.auth().signInWithEmailAndPassword(values.email, values.password)
-      .then((account) => {
-        console.log({ account });
-        saveUserAsSettings(account);
-        navigation.navigate('Home');
-      })
+    auth.signin(values.email, values.password)
       .catch((e) => {
-        setLoading(null);
+        setLoading(false);
         setLoginTries(loginTries + 1);
         setError(e.message);
       });
   };
+
+  useEffect(() => {
+    if (loading && auth.user) {
+      storeUser(auth.user);
+      navigation.navigate('Home');
+    }
+  }, [loading, auth]);
 
   if (loading) {
     return (
@@ -140,6 +142,7 @@ const LogIn = ({ navigation }) => {
           </Media>
         )}
       </Formik>
+      <Button onPress={() => auth.signout()}>Log Out</Button>
     </SafeAreaView>
   );
 };

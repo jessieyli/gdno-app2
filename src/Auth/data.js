@@ -1,51 +1,35 @@
-import { fromPairs } from 'lodash';
-import { setMultipleValues, getAllKeysOfType, keyTypes } from '../shared/data/localStorage';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
+import { setValue, getValue } from '../shared/data/localStorage';
 import handleError from '../shared/data/handleError';
 
-const prefix = '@GDNO_S_';
+const settingsKeys = ['firstName', 'lastName', 'growerType', 'zipcode'];
 
-const parseResults = (arrayResult) => {
-  const simplifiedKeys = arrayResult.map(
-    array => [array[0].replace(prefix, ''), array[1]]
-  );
-  return fromPairs(simplifiedKeys);
-};
+function getValidKeypairs(object, keyList) {
+  const returnObj = {};
+  keyList.forEach((key) => {
+    if (typeof object[key] !== 'undefined') {
+      returnObj[key] = object[key];
+    }
+  });
+  return returnObj;
+}
 
-export const defaultSettings = {
-  firstName: '',
-  lastName: '',
-  growerType: '',
-  email: '',
-  zipcode: '',
-  authToken: '',
-};
-
-export const getSettings = async () => {
+export const getStoredUser = async () => {
+  let result;
   try {
-    const result = await getAllKeysOfType(keyTypes.settings);
-    return parseResults(result);
+    result = await getValue('S_uid');
   } catch (e) {
     handleError(e);
     throw e;
   }
+  return result;
 };
 
-export const saveSettings = ({
-  email,
-  firstName,
-  lastName,
-  growerType,
-  zipcode,
-  uid,
-}) => {
-  const keypairs = [];
-  if (email) { keypairs.push([`${prefix}email`, email]); }
-  if (firstName) { keypairs.push([`${prefix}firstName`, firstName]); }
-  if (lastName) { keypairs.push([`${prefix}lastName`, lastName]); }
-  if (zipcode) { keypairs.push([`${prefix}zipcode`, zipcode]); }
-  if (growerType) { keypairs.push([`${prefix}growerType`, growerType]); }
-  if (uid) { keypairs.push([`${prefix}uid`, uid]); }
-  return setMultipleValues(keypairs);
+export const addUserSettings = async (uid, settings) => {
+  const userSettings = getValidKeypairs(settings, settingsKeys);
+  return firebase.firestore().collection('users').doc(uid).set(userSettings, { merge: true });
 };
 
-export const saveUserAsSettings = fbUser => saveSettings({ ...fbUser });
+export const storeUser = user => setValue('S_uid', user.uid);
