@@ -53,7 +53,7 @@ const SignUpEmail = ({ navigation }) => {
   const { params } = navigation.state;
 
   useEffect(() => {
-    if (loading && auth.user) {
+    if (loading && !!auth.user) {
       addUserSettings(auth.user.uid, {
         ...auth.user,
         ...params,
@@ -64,17 +64,17 @@ const SignUpEmail = ({ navigation }) => {
         })
         .catch((e) => {
           handleError(e);
+          setLoading(false);
           setError('Something went wrong. Please try again later.');
         });
     }
-
-    return () => setLoading(false);
   }, [loading, auth, params]);
 
   const handleSubmit = async (values) => {
     setLoading(true);
     auth.signup(values.email, values.password)
       .catch((e) => {
+        handleError(e);
         setLoading(false);
         setError(e.message);
       });
@@ -115,7 +115,7 @@ const SignUpEmail = ({ navigation }) => {
           <Media style={styles.viewPadding}>
             <Media.Item>
               <View style={styles.signUpHeader}>
-                <Body color="medGray">Step 2/4</Body>
+                <Body color="medGray">Step 2/3</Body>
                 <Touchable onPress={fProps.handleSubmit}>
                   <View>
                     <Body color="green" weight="bold" align="right">Next</Body>

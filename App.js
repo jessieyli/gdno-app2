@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Nav from './src/shared/nav';
 import AuthNav from './src/Auth/nav';

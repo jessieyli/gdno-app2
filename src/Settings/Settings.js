@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView, View, StyleSheet, Alert
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import SettingDisplay from './components/SettingDisplay';
-import { space, safeArea } from '../shared/constants';
-import { StyledInput, Button } from '../shared/components';
-import { saveSettings, defaultSettings, getSettings } from './data';
-import { clearKeys } from '../shared/data/localStorage';
+import { space, safeArea, PROPSHAPES } from '../shared/constants';
+import { PageLoader, StyledInput, Button } from '../shared/components';
+import { defaultSettings, getSettings } from './data';
+import { clearKeys, clearSettings } from '../shared/data/localStorage';
+import handleError from '../shared/data/handleError';
+import { useAuth } from '../shared/use-auth';
 
 
 const validationSchema = yup.object().shape({
@@ -34,19 +36,46 @@ const ss = StyleSheet.create({
   safeArea,
 });
 
-const SettingsScreen = () => {
+const SettingsScreen = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
   const [settings, setSettings] = useState(defaultSettings);
   const [isEditing, setIsEditing] = useState(false);
+  const auth = useAuth();
 
-  const loadSettings = useCallback(
+  const loadSettings = (user) => {
+    getSettings(user)
+      .then((userSettings) => {
+        const s = userSettings.data();
+        const displaySettings = {
+          name: `${s.firstName} ${s.lastName}`,
+          email: user.email,
+          ...s,
+        };
+        setSettings(displaySettings);
+        setLoading(false);
+      })
+      .catch((error) => {
+        handleError(error);
+        setLoading(false);
+      });
+  };
+
+  useEffect(
     () => {
-      getSettings()
-        .then((s) => {
-          setSettings(s);
-        });
+      if (loading && auth.user) {
+        loadSettings(auth.user);
+      }
     },
-    [getSettings, setSettings],
+    [auth, loading],
   );
+
+  const handleSignOut = () => {
+    auth.signout()
+      .then(() => {
+        clearSettings(['S_uid']);
+        navigation.navigate('Welcome');
+      });
+  };
 
   const handlePressClear = () => {
     Alert.alert(
@@ -68,13 +97,14 @@ const SettingsScreen = () => {
     );
   };
 
-  useEffect(() => {
-    loadSettings();
-
-    return () => {
-      setIsEditing(false);
-    };
-  }, []);
+  if (loading) {
+    return (
+      <SafeAreaView>
+        <Button color="danger" onPress={handleSignOut}>Sign Out</Button>
+        <PageLoader details="Loading settings…" />
+      </SafeAreaView>
+    );
+  }
 
   if (isEditing) {
     return (
@@ -83,14 +113,14 @@ const SettingsScreen = () => {
           <Formik
             initialValues={settings}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              saveSettings(values)
-                .then(() => {
-                  setSettings(values);
-                })
-                .finally(() => {
-                  setIsEditing(false);
-                });
+            onSubmit={() => {
+              // submitSettings(values)
+              //   .then(() => {
+              //     setSettings(values);
+              //   })
+              //   .finally(() => {
+              //     setIsEditing(false);
+              //   });
             }}
           >
             {fProps => (
@@ -128,6 +158,7 @@ const SettingsScreen = () => {
             )}
           </Formik>
           <View style={{ marginVertical: space[2] }}>
+            <Button color="danger" onPress={handleSignOut}>Sign Out</Button>
             <Button inverted color="danger" onPress={handlePressClear}>Clear All Plant & Settings Data</Button>
           </View>
         </View>
@@ -155,6 +186,10 @@ const SettingsScreen = () => {
       </View>
     </SafeAreaView>
   );
+};
+
+SettingsScreen.propTypes = {
+  navigation: PROPSHAPES.navigation.isRequired,
 };
 
 export default SettingsScreen;

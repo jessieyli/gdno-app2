@@ -35,6 +35,11 @@ export const getValue = async (key) => {
   }
 };
 
+export const removeMultipleValues = (
+  keys,
+  onError = () => {}
+) => AsyncStorage.multiRemove(keys, onError);
+
 export const setMultipleValues = keypairs => AsyncStorage.multiSet(keypairs);
 
 export const getMultipleValues = async (keys) => {
@@ -55,6 +60,25 @@ export const removeKeys = (keys) => {
 };
 
 export const getAllKeysOfType = async (type) => {
+  const pattern = /(@GDNO)(_.*?_)/;
+  let filter = () => false;
+  if (type === keyTypes.settings) {
+    filter = key => key.indexOf('@GDNO_S_') >= 0;
+  } else if (type === keyTypes.plants) {
+    filter = key => !key.match(pattern);
+  }
+  let keyList;
+  try {
+    keyList = await AsyncStorage.getAllKeys();
+  } catch (e) {
+    handleError(e);
+    throw e;
+  }
+
+  return keyList.filter(filter);
+};
+
+export const getStoredDataOfType = async (type) => {
   const pattern = /(@GDNO)(_.*?_)/;
   let filter = () => false;
   if (type === keyTypes.settings) {
@@ -87,5 +111,18 @@ export const clearKeys = async () => {
   }
   AsyncStorage.multiRemove(keys, (e) => {
     if (e) handleError(e);
+  });
+};
+
+export const clearSettings = async () => {
+  // Replace with removing just UID
+  let keys;
+  try {
+    keys = await getAllKeysOfType('SETTINGS');
+  } catch (e) {
+    handleError(e);
+  }
+  removeMultipleValues(keys, (e) => {
+    if (e) throw e;
   });
 };

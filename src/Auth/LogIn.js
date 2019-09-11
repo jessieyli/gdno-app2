@@ -142,7 +142,6 @@ const LogIn = ({ navigation }) => {
           </Media>
         )}
       </Formik>
-      <Button onPress={() => auth.signout()}>Log Out</Button>
     </SafeAreaView>
   );
 };

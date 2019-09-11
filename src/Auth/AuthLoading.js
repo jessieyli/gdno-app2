@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { PageLoader } from '../shared/components';
 import { PROPSHAPES } from '../shared/constants';
