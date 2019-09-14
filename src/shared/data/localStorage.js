@@ -90,7 +90,11 @@ export const getStoredDataOfType = async (type) => {
   let results;
   try {
     keyList = await AsyncStorage.getAllKeys();
-    results = await getMultipleValues(keyList.filter(filter));
+    results = await getMultipleValues(
+      keyList
+        .filter(key => key.indexOf('@GDNO_') >= 0)
+        .filter(filter)
+    );
   } catch (e) {
     handleError(e);
     throw e;
@@ -115,14 +119,17 @@ export const clearKeys = async () => {
 };
 
 export const clearSettings = async () => {
-  // Replace with removing just UID
+  // TODO: Replace with removing just UID
   let keys;
   try {
     keys = await getAllKeysOfType('SETTINGS');
   } catch (e) {
     handleError(e);
   }
-  removeMultipleValues(keys, (e) => {
+  const keylist = keys.filter(
+    key => key.indexOf('@GDNO_') < 0 || key.indexOf('GDNO_S_') >= 0
+  );
+  removeMultipleValues(keylist, (e) => {
     if (e) throw e;
   });
 };

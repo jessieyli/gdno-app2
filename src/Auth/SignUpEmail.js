@@ -26,6 +26,7 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .label('Password')
+    .min(7)
     .required('Required'),
 });
 

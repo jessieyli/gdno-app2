@@ -7,7 +7,7 @@
     "test": "jest",
     "build-android": "expo build:android -t app-bundle",
     "ios-mini": "react-native run-ios --configuration Release",
-    "andoird-mini": "react-native run-android --version release",
+    "android-mini": "react-native run-android --version release",
     "devices": "xcrun simctl list devices",
     "start-release": "expo start --no-dev --minify"
   },
@@ -15,7 +15,7 @@
     "axios": "^0.19.0",
     "expo": "^34.0.1",
     "expo-web-browser": "^6.0.0",
-    "firebase": "^6.6.0",
+    "firebase": "^6.4.2",
     "formik": "^1.5.8",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
