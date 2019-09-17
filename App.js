@@ -1,5 +1,8 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {
+  StatusBar
+} from 'react-native';
 import Nav from './src/shared/nav';
 import AuthNav from './src/Auth/nav';
 import AuthLoadingScreen from './src/Auth/AuthLoading';
@@ -18,6 +21,11 @@ const AppContainer = createAppContainer(createSwitchNavigator(
 
 const App = () => (
   <ProvideAuth>
+    <StatusBar
+      backgroundColor="transparent"
+      barStyle="dark-content"
+      translucent
+    />
     <AppContainer />
   </ProvideAuth>
 );

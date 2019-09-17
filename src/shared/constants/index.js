@@ -1,3 +1,4 @@
+import { Platform, StatusBar } from 'react-native';
 import { values } from 'lodash';
 import COLORS from './colors';
 
@@ -10,7 +11,10 @@ export const padded = { padding: space[2] };
 
 export const borderWide = 2;
 
-export const safeArea = { flex: 1 };
+export const safeArea = {
+  flex: 1,
+  paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight + 0,
+};
 
 export const centered = {
   flex: 1,
