@@ -4,22 +4,18 @@ import {
   View,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { COLORS, detailsScreensArray } from '../../shared/constants';
-import { NavText, Touchable } from '../../shared/components';
+import { COLORS, detailsScreensArray, space } from '../../shared/constants';
+import { NavText, Touchable, Media } from '../../shared/components';
 
 const ss = StyleSheet.create({
   subnav: {
-    display: 'flex',
-    alignItems: 'stretch',
-    justifyContent: 'space-around',
     flexDirection: 'row',
-    height: 60,
   },
   navItem: {
     borderBottomWidth: 1,
     borderBottomColor: COLORS.lightGray,
-    paddingVertical: 20,
-    flexGrow: 2,
+    paddingVertical: space[2],
+    paddingHorizontal: space[0],
     alignSelf: 'stretch',
     justifyContent: 'center',
     alignItems: 'center',
@@ -33,17 +29,19 @@ const SubNavMenu = ({
   onPress,
   active,
 }) => (
-  <View style={ss.subnav}>
+  <Media style={ss.subnav}>
     {detailsScreensArray.map(screen => (
-      <Touchable key={screen} onPress={() => onPress(screen)}>
-        <View style={[ss.navItem, active === screen ? ss.activeNav : {}]}>
-          <NavText color={active === screen ? 'grass' : 'medGray'}>
-            {screen}
-          </NavText>
-        </View>
-      </Touchable>
+      <Media.Body key={screen}>
+        <Touchable onPress={() => onPress(screen)}>
+          <View style={[ss.navItem, active === screen ? ss.activeNav : {}]}>
+            <NavText color={active === screen ? 'grass' : 'medGray'}>
+              {screen}
+            </NavText>
+          </View>
+        </Touchable>
+      </Media.Body>
     ))}
-  </View>
+  </Media>
 );
 
 SubNavMenu.propTypes = {
