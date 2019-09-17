@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-import { Body, Button } from '../../shared/components';
-import { space } from '../../shared/constants';
+import {
+  Body, Touchable, ButtonText
+} from '../../shared/components';
+import { borderWide, space, COLORS } from '../../shared/constants';
 
 const styles = StyleSheet.create({
   buttonGroup: {
@@ -11,11 +13,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     marginBottom: 20,
+    borderWidth: borderWide,
+    borderColor: COLORS.grass,
+    borderRadius: borderWide,
+    backgroundColor: '#0ff',
   },
-  buttonGroupChild: {
+  selectedButton: {
     flexGrow: 1,
     paddingVertical: space[4],
     paddingHorizontal: space[2],
+    backgroundColor: COLORS.grass,
+  },
+  unselectedButton: {
+    flexGrow: 1,
+    paddingVertical: space[4],
+    paddingHorizontal: space[2],
+    backgroundColor: COLORS.white,
+  },
+  firstButton: {
+    borderRightWidth: borderWide,
+    borderRightColor: COLORS.grass,
   }
 });
 
@@ -26,20 +43,43 @@ const GrowerTypeButtonGroup = ({ formProps, formKey }) => {
   return (
     <React.Fragment>
       <View style={styles.buttonGroup}>
-        <Button
+        <Touchable
           onPress={() => handlePress('new')}
-          style={styles.buttonGroupChild}
-          inverted={formProps.values[formKey] !== 'new'}
         >
-          I&apos;m a new grower
-        </Button>
-        <Button
-          style={styles.buttonGroupChild}
+          <View
+            style={[
+              styles.firstButton,
+              formProps.values[formKey] === 'new'
+                ? styles.selectedButton
+                : styles.unselectedButton
+            ]}
+          >
+            <ButtonText
+              align="center"
+              color={formProps.values[formKey] === 'new' ? 'white' : 'grass'}
+            >
+              I&apos;m a new grower
+            </ButtonText>
+          </View>
+        </Touchable>
+        <Touchable
           onPress={() => handlePress('old')}
-          inverted={formProps.values[formKey] !== 'old'}
         >
+          <View
+            style={
+              formProps.values[formKey] === 'old'
+                ? styles.selectedButton
+                : styles.unselectedButton
+            }
+          >
+            <ButtonText
+              align="center"
+              color={formProps.values[formKey] === 'old' ? 'white' : 'grass'}
+            >
               I&apos;ve done this before
-        </Button>
+            </ButtonText>
+          </View>
+        </Touchable>
       </View>
       {formProps.errors[formKey]
         && (

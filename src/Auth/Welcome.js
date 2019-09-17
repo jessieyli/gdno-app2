@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// TODO: Check local storage and adjust "create account" link accordingly
 const Welcome = () => (
   <View
     style={styles.LogInWrapper}
