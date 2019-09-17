@@ -4,7 +4,7 @@ import COLORS from './colors';
 export { default as COLORS, colorKeys } from './colors';
 
 /* STYLES */
-export const space = [4, 8, 16, 24, 32, 40];
+export const space = [4, 8, 16, 24, 32, 40, 48, 56, 64];
 
 export const padded = { padding: space[2] };
 

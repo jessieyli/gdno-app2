@@ -1,5 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
+import { View, Image } from 'react-native';
+
+import logo from '../assets/icon-transparent.png';
 import Home from '../../Home/Home';
 import MyCareGuides from '../../CareGuides/MyCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
@@ -14,8 +17,16 @@ const MainNavigation = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: () => ({
-        headerTitle: 'Home',
+        headerTitle: (
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+            <Image
+              source={logo}
+              style={{ width: 24, height: 24 }}
+            />
+          </View>
+        ),
         ...centeredHeader,
+        headerLeft: (<View />),
         headerRight: (<LogOutButton />),
       }),
     },
