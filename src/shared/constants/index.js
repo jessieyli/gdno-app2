@@ -27,8 +27,11 @@ export const centeredHeader = {
   headerStyle: {
     backgroundColor: '#ffffff',
     textAlign: 'center',
+    borderTopColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor: COLORS.lightGray,
+    marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+    elevation: 0,
   },
   headerTintColor: COLORS.gray,
   headerTitleStyle: {

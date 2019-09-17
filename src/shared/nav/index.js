@@ -33,7 +33,8 @@ const MainNavigation = createStackNavigator(
     CareGuides: {
       screen: MyCareGuides,
       navigationOptions: () => ({
-        headerTitle: 'My Plants'
+        headerTitle: 'My Plants',
+        ...centeredHeader,
       }),
     },
     CareGuide,
@@ -49,7 +50,8 @@ const MainNavigation = createStackNavigator(
     GettingStarted: {
       screen: GettingStarted,
       navigationOptions: () => ({
-        headerTitle: 'Getting Started'
+        headerTitle: 'Getting Started',
+        ...centeredHeader,
       }),
     },
   },
