@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
   viewPadding: {
     padding: space[2],
   },
+  backButton: {
+    paddingBottom: space[2],
+  },
   signUpHeader: {
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -114,6 +117,13 @@ const LogIn = ({ navigation }) => {
       >
         {fProps => (
           <Media style={styles.viewPadding}>
+            <Media.Item style={styles.backButton}>
+              <Touchable onPress="Welcome">
+                <View hitSlop={hitSlop}>
+                  <ButtonText align="left" color="medGray">← Back</ButtonText>
+                </View>
+              </Touchable>
+            </Media.Item>
             <Media.Body>
               <View style={styles.signUpTitle}>
                 <Header>Good to see you again!</Header>
@@ -132,13 +142,6 @@ const LogIn = ({ navigation }) => {
               />
               <Button color="green" onPress={fProps.handleSubmit}>Log In</Button>
             </Media.Body>
-            <Media.Item>
-              <Touchable onPress="SignUp">
-                <View style={styles.logInButton} hitSlop={hitSlop}>
-                  <ButtonText color="green" weight="bold" align="left">Create an account</ButtonText>
-                </View>
-              </Touchable>
-            </Media.Item>
           </Media>
         )}
       </Formik>

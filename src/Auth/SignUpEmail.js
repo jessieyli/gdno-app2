@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 import {
-  Body, ErrorState, Header, Media, Touchable, StyledInput, ButtonText, PageLoader,
+  Body, ErrorState, Header, Media, Touchable, StyledInput, PageLoader,
 } from '../shared/components';
 import {
   safeArea, centered, space, hitSlop, PROPSHAPES
@@ -116,9 +116,13 @@ const SignUpEmail = ({ navigation }) => {
           <Media style={styles.viewPadding}>
             <Media.Item>
               <View style={styles.signUpHeader}>
-                <Body color="medGray">Step 2/3</Body>
+                <Touchable onPress="SignUp">
+                  <View hitSlop={hitSlop}>
+                    <Body color="medGray">← Step 2/3</Body>
+                  </View>
+                </Touchable>
                 <Touchable onPress={fProps.handleSubmit}>
-                  <View>
+                  <View hitSlop={hitSlop}>
                     <Body color="green" weight="bold" align="right">Next</Body>
                   </View>
                 </Touchable>
@@ -142,13 +146,6 @@ const SignUpEmail = ({ navigation }) => {
                 secureTextEntry
               />
             </Media.Body>
-            <Media.Item>
-              <Touchable onPress="LogIn">
-                <View style={styles.logInButton} hitSlop={hitSlop}>
-                  <ButtonText color="green" weight="bold" align="left">I have an account</ButtonText>
-                </View>
-              </Touchable>
-            </Media.Item>
           </Media>
         )}
       </Formik>

@@ -9,7 +9,7 @@ import * as yup from 'yup';
 
 import GrowerTypeButtonGroup from './components/StyledButtonGroup';
 import {
-  Body, Header, ButtonText, Media, Touchable, StyledInput,
+  Body, Header, Media, Touchable, StyledInput,
 } from '../shared/components';
 import {
   safeArea, centered, space, hitSlop, PROPSHAPES
@@ -71,10 +71,14 @@ const SignUp = ({ navigation }) => {
         {fProps => (
           <Media style={styles.viewPadding}>
             <Media.Item>
-              <View style={styles.signUpHeader}>
-                <Body color="medGray">Step 1/3</Body>
-                <Touchable onPress={fProps.handleSubmit} disabled={fProps.values.growerType === ''}>
+              <View style={styles.signUpHeader} hitSlop={hitSlop}>
+                <Touchable onPress="Welcome">
                   <View>
+                    <Body color="medGray">← Step 1/3</Body>
+                  </View>
+                </Touchable>
+                <Touchable onPress={fProps.handleSubmit} disabled={fProps.values.growerType === ''}>
+                  <View hitSlop={hitSlop}>
                     <Body color="green" weight="bold" align="right">Next</Body>
                   </View>
                 </Touchable>
@@ -102,13 +106,6 @@ const SignUp = ({ navigation }) => {
                 formProps={fProps}
               />
             </Media.Body>
-            <Media.Item>
-              <Touchable onPress="LogIn">
-                <View style={styles.logInButton} hitSlop={hitSlop}>
-                  <ButtonText color="green" weight="bold" align="left">I have an account</ButtonText>
-                </View>
-              </Touchable>
-            </Media.Item>
           </Media>
         )}
       </Formik>
