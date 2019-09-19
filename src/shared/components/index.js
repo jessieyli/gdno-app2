@@ -14,6 +14,8 @@ export {
 } from './Type';
 export { default as Paper } from './Paper';
 export { default as Media } from './Media';
+export { default as Chevron } from './Chevron';
+export { default as Cross } from './Cross';
 
 /* STAR SYSTEMS */
 export { default as Touchable } from './Touchable';
