@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { COLORS, space, safeArea } from '../../shared/constants';
-import { SectionTitle, Touchable, Type } from '../../shared/components';
+import { SectionTitle, Touchable, Cross } from '../../shared/components';
 
 const ss = StyleSheet.create({
   main: {
@@ -28,7 +28,7 @@ const ss = StyleSheet.create({
   },
   safeArea,
   closeButton: {
-    padding: space[1],
+    paddingVertical: space[2],
     width: 50,
   }
 });
@@ -53,7 +53,7 @@ const StandardModal = ({
         <View style={ss.horizontal}>
           <Touchable onPress={onClose}>
             <View style={ss.closeButton}>
-              <Type color="gray" size={30}>X</Type>
+              <Cross color="gray" />
             </View>
           </Touchable>
           {!!title && <SectionTitle uppercase color="medGray">{title}</SectionTitle>}
