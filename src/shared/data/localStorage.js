@@ -35,7 +35,12 @@ export const getValue = async (key) => {
   }
 };
 
-export const setMultipleValues = async keypairs => AsyncStorage.multiSet(keypairs);
+export const removeMultipleValues = (
+  keys,
+  onError = () => {}
+) => AsyncStorage.multiRemove(keys, onError);
+
+export const setMultipleValues = keypairs => AsyncStorage.multiSet(keypairs);
 
 export const getMultipleValues = async (keys) => {
   let values;
@@ -49,9 +54,9 @@ export const getMultipleValues = async (keys) => {
   return values;
 };
 
-export const removeKeys = async (keys) => {
+export const removeKeys = (keys) => {
   const gdnoKeys = keys.map(k => `@GDNO_${k}`);
-  AsyncStorage.multiRemove(gdnoKeys);
+  return AsyncStorage.multiRemove(gdnoKeys);
 };
 
 export const getAllKeysOfType = async (type) => {
@@ -63,10 +68,33 @@ export const getAllKeysOfType = async (type) => {
     filter = key => !key.match(pattern);
   }
   let keyList;
+  try {
+    keyList = await AsyncStorage.getAllKeys();
+  } catch (e) {
+    handleError(e);
+    throw e;
+  }
+
+  return keyList.filter(filter);
+};
+
+export const getStoredDataOfType = async (type) => {
+  const pattern = /(@GDNO)(_.*?_)/;
+  let filter = () => false;
+  if (type === keyTypes.settings) {
+    filter = key => key.indexOf('@GDNO_S_') >= 0;
+  } else if (type === keyTypes.plants) {
+    filter = key => !key.match(pattern);
+  }
+  let keyList;
   let results;
   try {
     keyList = await AsyncStorage.getAllKeys();
-    results = await getMultipleValues(keyList.filter(filter));
+    results = await getMultipleValues(
+      keyList
+        .filter(key => key.indexOf('@GDNO_') >= 0)
+        .filter(filter)
+    );
   } catch (e) {
     handleError(e);
     throw e;
@@ -87,5 +115,21 @@ export const clearKeys = async () => {
   }
   AsyncStorage.multiRemove(keys, (e) => {
     if (e) handleError(e);
+  });
+};
+
+export const clearSettings = async () => {
+  // TODO: Replace with removing just UID
+  let keys;
+  try {
+    keys = await getAllKeysOfType('SETTINGS');
+  } catch (e) {
+    handleError(e);
+  }
+  const keylist = keys.filter(
+    key => key.indexOf('@GDNO_') < 0 || key.indexOf('GDNO_S_') >= 0
+  );
+  removeMultipleValues(keylist, (e) => {
+    if (e) throw e;
   });
 };

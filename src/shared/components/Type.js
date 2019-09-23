@@ -13,6 +13,7 @@ const Type = ({
   uppercase = false,
   style = {},
   align = 'left',
+  lineHeight = 1.5,
 }) => {
   if (!children) return null;
   const fontSelect = italic ? `${weight}Italic` : weight;
@@ -20,7 +21,7 @@ const Type = ({
     textStyle: {
       // ...FONTS[fontSelect],
       color: COLORS[color],
-      lineHeight: size * 1.5,
+      lineHeight: size * lineHeight,
       fontSize: size,
       textAlign: align,
     }
@@ -61,9 +62,10 @@ Type.propTypes = {
     'right',
   ]),
   style: PropTypes.object,
+  lineHeight: PropTypes.number,
 };
 
-export const Header = props => (<Type weight="bold" size={36} {...props} />);
+export const Header = props => (<Type weight="bold" size={36} lineHeight={1.1} {...props} />);
 export const DetailHeader = props => (<Type weight="medium" size={24} {...props} />);
 export const FormInput = props => (<Type weight="light" size={24} {...props} />);
 export const SubHead = props => (<Type weight="light" size={18} {...props} />);
@@ -72,6 +74,7 @@ export const SectionTitle = props => (<Type weight="medium" size={16} {...props}
 export const NavText = props => (<Type weight="black" size={12} {...props} />);
 export const TextHeader = props => (<Type weight="bold" size={12} {...props} />);
 export const FormLabel = props => (<Type weight="bold" size={12} color="lightishGray" uppercase style={{ letterSpacing: 1 }} {...props} />);
+// TODO add letterSpacing 2 when bold works
 export const ButtonText = props => (<Type weight="bold" size={12} color="white" align="center" uppercase style={{ letterSpacing: 1 }} {...props} />);
 
 export default Type;

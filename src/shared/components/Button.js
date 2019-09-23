@@ -82,6 +82,7 @@ Button.propTypes = {
     'gray',
     'medGray',
     'lightGray',
+    'lightishGray',
     'danger',
     'warning',
   ]),

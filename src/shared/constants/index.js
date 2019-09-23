@@ -1,16 +1,20 @@
+import { Platform, StatusBar } from 'react-native';
 import { values } from 'lodash';
 import COLORS from './colors';
 
-export { default as COLORS } from './colors';
+export { default as COLORS, colorKeys } from './colors';
 
 /* STYLES */
-export const space = [4, 8, 16, 24, 32, 40];
+export const space = [4, 8, 16, 24, 32, 40, 48, 56, 64];
 
 export const padded = { padding: space[2] };
 
 export const borderWide = 2;
 
-export const safeArea = { flex: 1 };
+export const safeArea = {
+  flex: 1,
+  paddingTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight + 0,
+};
 
 export const centered = {
   flex: 1,
@@ -23,8 +27,11 @@ export const centeredHeader = {
   headerStyle: {
     backgroundColor: '#ffffff',
     textAlign: 'center',
+    borderTopColor: 'transparent',
     borderBottomWidth: 1,
     borderBottomColor: COLORS.lightGray,
+    marginTop: Platform.OS === 'ios' ? 0 : StatusBar.currentHeight,
+    elevation: 0,
   },
   headerTintColor: COLORS.gray,
   headerTitleStyle: {
@@ -72,3 +79,10 @@ export const detailsScreens = {
 export const detailsScreensArray = values(detailsScreens);
 
 export { default as PROPSHAPES } from './propShapes';
+
+export const hitSlop = {
+  left: 20,
+  top: 20,
+  right: 20,
+  bottom: 20,
+};

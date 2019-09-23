@@ -1,6 +1,7 @@
 const handleError = (error) => {
-  // TODO: add Sentry logging
-  console.error(error.message);
+  // TODO: Add Sentry
+  const errorMessage = error.message ? error.message.toString() : error.toString();
+  console.error(errorMessage);
 };
 
 export default handleError;

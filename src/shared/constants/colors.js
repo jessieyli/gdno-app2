@@ -13,6 +13,32 @@ const warning = '#d4851a';
 const offWhite = '#fafafa';
 const white = '#ffffff';
 
+export const colorKeys = [
+  'cyan',
+  'grass',
+  'green',
+  'royal',
+  'magenta',
+  'tangerine',
+  'gray',
+  'medGray',
+  'lightishGray',
+  'lightGray',
+  'offWhite',
+  'white',
+  'tabIconDefault',
+  'tabIconSelected',
+  'tabBar',
+  'errorBackground',
+  'errorText',
+  'warningBackground',
+  'warningText',
+  'noticeBackground',
+  'noticeText',
+  'danger',
+  'warning',
+];
+
 export default {
   cyan,
   grass,

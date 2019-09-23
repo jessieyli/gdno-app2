@@ -1,25 +1,33 @@
-import React, { Component } from 'react';
-import { createAppContainer } from 'react-navigation';
-import * as firebase from 'firebase/app';
-import { firebaseConfig } from './src/shared/secrets';
+import React from 'react';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import {
+  StatusBar
+} from 'react-native';
 import Nav from './src/shared/nav';
+import AuthNav from './src/Auth/nav';
+import AuthLoadingScreen from './src/Auth/AuthLoading';
+import { ProvideAuth } from './src/shared/use-auth';
 
-const AppContainer = createAppContainer(Nav);
-
-class App extends Component {
-  componentDidMount() {
-    firebase.initializeApp(firebaseConfig);
+const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    Auth: AuthNav,
+    App: Nav,
+  },
+  {
+    initialRouteName: 'AuthLoading',
   }
+));
 
-  render() {
-    return (
-      <AppContainer
-        ref={(nav) => {
-          this.navigator = nav;
-        }}
-      />
-    );
-  }
-}
+const App = () => (
+  <ProvideAuth>
+    <StatusBar
+      backgroundColor="transparent"
+      barStyle="dark-content"
+      translucent
+    />
+    <AppContainer />
+  </ProvideAuth>
+);
 
 export default App;

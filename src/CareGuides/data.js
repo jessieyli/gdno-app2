@@ -1,7 +1,7 @@
 import { performGet, performMultipleGet } from '../shared/data/rest';
 import handleError from '../shared/data/handleError';
 import {
-  keyTypes, getAllKeysOfType, setValue, removeKeys, getValue
+  keyTypes, getStoredDataOfType, setValue, removeKeys, getValue
 } from '../shared/data/localStorage';
 import { airtableKey, airtableUrl } from '../shared/secrets';
 
@@ -32,7 +32,7 @@ export const getPlantData = async () => {
 
 export const loadStoredPlants = async () => {
   try {
-    const plants = await getAllKeysOfType(keyTypes.plants);
+    const plants = await getStoredDataOfType(keyTypes.plants);
     return plants.map(v => JSON.parse(v[1]));
   } catch (e) {
     handleError(e);

@@ -12,6 +12,7 @@
     "react/destructuring-assignment": "off",
     "react/require-default-props": "off",
     "react/forbid-prop-types": "off",
+    "jsx-a11y/accessible-emoji": "off",
   },
   "globals": {
     "fetch": false
