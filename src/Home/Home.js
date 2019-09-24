@@ -93,7 +93,7 @@ export default class HomeScreen extends Component {
           <View style={styles.ctaBox}>
             <View style={styles.title}>
               <Header color="white" align="center" style={styles.title}>
-                Let&apos;s get growing
+                Let&apos;s Grow
               </Header>
             </View>
             <Button color="cyan" inverted onPress="CareGuides">Add Care Guides</Button>

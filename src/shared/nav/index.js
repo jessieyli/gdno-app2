@@ -50,7 +50,7 @@ const MainNavigation = createStackNavigator(
     GettingStarted: {
       screen: GettingStarted,
       navigationOptions: () => ({
-        headerTitle: 'Getting Started',
+        headerTitle: 'Get Started',
         ...centeredHeader,
       }),
     },

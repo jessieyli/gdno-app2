@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { SectionTitle, Body } from '../shared/components';
+import { SectionTitle, Body, SubHead } from '../shared/components';
 import { COLORS, space } from '../shared/constants';
 import step1 from '../shared/assets/gettingstarted_step1.png';
 import step2 from '../shared/assets/gettingstarted_step2.png';
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   imagePlaceholder: {
     backgroundColor: COLORS.lightGray,
-    height: 200,
+    height: 160,
     flex: 1,
     justifyContent: 'center',
     marginBottom: space[1],
@@ -46,14 +46,24 @@ const styles = StyleSheet.create({
 const GettingStarted = () => (
   <ScrollView contentContainerStyle={styles.container}>
     <View style={styles.section}>
+      <SubHead>
+Now that you have your Gardenio grow box, roll up those sleeves and get ready to
+ pick dirt out from under those fingernails. No idea how to garden? No sweat.
+  Getting started is as easy following these five steps.
+      </SubHead>
+    </View>
+    <View style={styles.section}>
       <Image
         style={styles.imageBlock}
         source={step1}
       />
-      <SectionTitle>1. Unpack the Box.</SectionTitle>
+      <SectionTitle>1. Unpack Your Box</SectionTitle>
       <Body>
-Bust out your plant(s), your soil, mulch if you have it, and the container.
- This is gonna be a piece of cake. Really nothing fancy here. That’s the point.
+This is the first step of your gardening journey. Begin by unboxing your
+ plant(s), your soil, and your plant’s container. Depending on your order, your
+  box may include mulch as well. Before you proceed to the next step, make sure
+   you aren’t missing anything.
+
       </Body>
     </View>
     <View style={styles.section}>
@@ -61,13 +71,13 @@ Bust out your plant(s), your soil, mulch if you have it, and the container.
         style={styles.imageBlock}
         source={step2}
       />
-      <SectionTitle>2. Get Your Hands Dirty.</SectionTitle>
+      <SectionTitle>2. Dig In</SectionTitle>
       <Body>
-Throw soil in the container like a madperson. If you’ve got a small container,
- put about 1/4 of the soil in at first. Large container: fill it about 3/4 of the
-  way. Now, mix it around with your hands. There’s a good deal of research that
-   shows this is good for people. Soil has been around a lot longer than phone
-    screens, it turns out.
+Take your soil and start filling up your container. You’ll require a different
+ amount of soil depending on the size of your container. If you’re working with
+  a small container, fill it about ¼ of the way. If it’s a large container, ¾
+   of the way is the magic number. Gardening is about touching the earth and
+    getting your hands dirty. So get in there and mix that soil around!
       </Body>
     </View>
     <View style={styles.section}>
@@ -75,7 +85,7 @@ Throw soil in the container like a madperson. If you’ve got a small container,
         style={styles.imageBlock}
         source={step3}
       />
-      <SectionTitle>3. Transplant.</SectionTitle>
+      <SectionTitle>3. Transfer Your Plant</SectionTitle>
       <Body>
 Soak the soil of your baby plant (not the leaves) with water to make it nice and
  squishy. With your hand covering the soil, flip the plant over, squeeze the sides,
@@ -104,7 +114,7 @@ Some plants boxes contain mulch, which is just a word for organic stuff you thro
         style={styles.imageBlock}
         source={step5}
       />
-      <SectionTitle>5. Seal the deal</SectionTitle>
+      <SectionTitle>5. Seal the Deal</SectionTitle>
       <Body>
 Oh man, this has been fun. Lightly water the soil (not the foliage!) to seal the
  deal, make it all one. You’re good when it starts to drip out the bottom. Refer
