@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* gdnoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* gdnoTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -14,6 +13,11 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		620712E490176A782BF15DF9 /* libPods-gdnoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACA61858FEBAD12077898F7 /* libPods-gdnoTests.a */; };
 		B31E9BFF5E5A3F9EFEDB189B /* libPods-gdno.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D58A37996249779191905DD1 /* libPods-gdno.a */; };
+		BB2E3E2D0AA541DA9B05F3F9 /* CircularAirPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5688369D8AF64F5ABF03FED6 /* CircularAirPro-Black.otf */; };
+		5319C0A19A654668A6965D1C /* CircularAirPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3B232DAB57C642C3882B3498 /* CircularAirPro-Bold.otf */; };
+		8147094212C44C22B8F64BD7 /* CircularAirPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFD992FDB44EE5907BC16C /* CircularAirPro-Light.otf */; };
+		D80758946AA6444EB17A096C /* CircularAirPro-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C08823F0CA54A9C9A2C781C /* CircularAirPro-LightItalic.otf */; };
+		EDCBCEF2163A4AD8982EC5FE /* CircularAirPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 827E6E0EE21A4411AEB0BBB0 /* CircularAirPro-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,11 @@
 		D58A37996249779191905DD1 /* libPods-gdno.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-gdno.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		5688369D8AF64F5ABF03FED6 /* CircularAirPro-Black.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Black.otf"; path = "../src/shared/fonts/CircularAirPro-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3B232DAB57C642C3882B3498 /* CircularAirPro-Bold.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Bold.otf"; path = "../src/shared/fonts/CircularAirPro-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5DDFD992FDB44EE5907BC16C /* CircularAirPro-Light.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Light.otf"; path = "../src/shared/fonts/CircularAirPro-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7C08823F0CA54A9C9A2C781C /* CircularAirPro-LightItalic.otf */ = {isa = PBXFileReference; name = "CircularAirPro-LightItalic.otf"; path = "../src/shared/fonts/CircularAirPro-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		827E6E0EE21A4411AEB0BBB0 /* CircularAirPro-Medium.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Medium.otf"; path = "../src/shared/fonts/CircularAirPro-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +137,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				A236DA5D9F60EB3378B990F6 /* Pods */,
+				0A771DAFFAF949C9B61E32E6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -154,6 +164,19 @@
 			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		0A771DAFFAF949C9B61E32E6 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				5688369D8AF64F5ABF03FED6 /* CircularAirPro-Black.otf */,
+				3B232DAB57C642C3882B3498 /* CircularAirPro-Bold.otf */,
+				5DDFD992FDB44EE5907BC16C /* CircularAirPro-Light.otf */,
+				7C08823F0CA54A9C9A2C781C /* CircularAirPro-LightItalic.otf */,
+				827E6E0EE21A4411AEB0BBB0 /* CircularAirPro-Medium.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -203,7 +226,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -245,6 +268,11 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				BB2E3E2D0AA541DA9B05F3F9 /* CircularAirPro-Black.otf in Resources */,
+				5319C0A19A654668A6965D1C /* CircularAirPro-Bold.otf in Resources */,
+				8147094212C44C22B8F64BD7 /* CircularAirPro-Light.otf in Resources */,
+				D80758946AA6444EB17A096C /* CircularAirPro-LightItalic.otf in Resources */,
+				EDCBCEF2163A4AD8982EC5FE /* CircularAirPro-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

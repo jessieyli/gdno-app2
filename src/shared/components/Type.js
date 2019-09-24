@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { COLORS } from '../constants';
+import { COLORS, FONTS } from '../constants';
 
 const Type = ({
   weight = 'medium',
@@ -14,16 +14,18 @@ const Type = ({
   style = {},
   align = 'left',
   lineHeight = 1.5,
+  letterSpacing = 0,
 }) => {
   if (!children) return null;
   const fontSelect = italic ? `${weight}Italic` : weight;
   const textStyle = StyleSheet.create({
     textStyle: {
-      // ...FONTS[fontSelect],
+      ...FONTS[fontSelect],
       color: COLORS[color],
       lineHeight: size * lineHeight,
       fontSize: size,
       textAlign: align,
+      letterSpacing,
     }
   });
   return (
@@ -63,6 +65,7 @@ Type.propTypes = {
   ]),
   style: PropTypes.object,
   lineHeight: PropTypes.number,
+  letterSpacing: PropTypes.number,
 };
 
 export const Header = props => (<Type weight="bold" size={36} lineHeight={1.1} {...props} />);
@@ -73,8 +76,7 @@ export const Body = props => (<Type weight="light" size={16} {...props} />);
 export const SectionTitle = props => (<Type weight="medium" size={16} {...props} />);
 export const NavText = props => (<Type weight="black" size={12} {...props} />);
 export const TextHeader = props => (<Type weight="bold" size={12} {...props} />);
-export const FormLabel = props => (<Type weight="bold" size={12} color="lightishGray" uppercase style={{ letterSpacing: 1 }} {...props} />);
-// TODO add letterSpacing 2 when bold works
-export const ButtonText = props => (<Type weight="bold" size={12} color="white" align="center" uppercase style={{ letterSpacing: 1 }} {...props} />);
+export const FormLabel = props => (<Type weight="bold" size={12} color="lightishGray" uppercase letterSpacing={1} {...props} />);
+export const ButtonText = props => (<Type weight="bold" size={12} color="white" align="center" uppercase letterSpacing={2} {...props} />);
 
 export default Type;
