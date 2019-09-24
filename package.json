@@ -48,8 +48,8 @@
   },
   "private": true,
   "rnpm": {
-      "assets": [
-  	     "./src/shared/fonts/"
-      ]
+    "assets": [
+      "./src/shared/fonts/"
+    ]
   }
 }

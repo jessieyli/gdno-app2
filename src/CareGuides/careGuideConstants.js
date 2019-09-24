@@ -1,22 +1,22 @@
 import React from 'react';
 import { COLORS, space } from '../shared/constants';
-import AnnualIcon from '../shared/icons/lifespan_annual.svg';
-import BiennialIcon from '../shared/icons/lifespan_biennial.svg';
-import PerennialIcon from '../shared/icons/lifespan_perennial.svg';
-import FullSunIcon from '../shared/icons/sun_full.svg';
-import PartialSunIcon from '../shared/icons/sun_partial.svg';
-import LessWaterIcon from '../shared/icons/water_less.svg';
-import RegularWaterIcon from '../shared/icons/water_normal.svg';
-import MoreWaterIcon from '../shared/icons/water_more.svg';
-import NonePetIcon from '../shared/icons/petfriendly_none.svg';
-import BothPetIcon from '../shared/icons/petfriendly_both.svg';
-import CatPetIcon from '../shared/icons/petfriendly_cat.svg';
-import DogPetIcon from '../shared/icons/petfriendly_dog.svg';
-import LeanSoilIcon from '../shared/icons/soil_lean.svg';
-import FertileSoilIcon from '../shared/icons/soil_fertile.svg';
-import FrostHardyIcon from '../shared/icons/frost_hardy.svg';
-import FrostSensitiveIcon from '../shared/icons/frost_sensitive.svg';
-import FrostTolerantIcon from '../shared/icons/frost_tolerant.svg';
+import AnnualIcon from './icons/lifespan_annual.svg';
+import BiennialIcon from './icons/lifespan_biennial.svg';
+import PerennialIcon from './icons/lifespan_perennial.svg';
+import FullSunIcon from './icons/sun_full.svg';
+import PartialSunIcon from './icons/sun_partial.svg';
+import LessWaterIcon from './icons/water_less.svg';
+import RegularWaterIcon from './icons/water_normal.svg';
+import MoreWaterIcon from './icons/water_more.svg';
+import NonePetIcon from './icons/petfriendly_none.svg';
+import BothPetIcon from './icons/petfriendly_both.svg';
+import CatPetIcon from './icons/petfriendly_cat.svg';
+import DogPetIcon from './icons/petfriendly_dog.svg';
+import LeanSoilIcon from './icons/soil_lean.svg';
+import FertileSoilIcon from './icons/soil_fertile.svg';
+import FrostHardyIcon from './icons/frost_hardy.svg';
+import FrostSensitiveIcon from './icons/frost_sensitive.svg';
+import FrostTolerantIcon from './icons/frost_tolerant.svg';
 
 export const styles = {
   main: {
