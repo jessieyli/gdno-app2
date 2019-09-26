@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { COLORS, FONTS } from '../constants';
+import { COLORS } from '../constants';
 
 const Type = ({
   weight = 'medium',
@@ -17,10 +17,26 @@ const Type = ({
   letterSpacing = 0,
 }) => {
   if (!children) return null;
-  const fontSelect = italic ? `${weight}Italic` : weight;
+  // const fontSelect = italic ? `${weight}Italic` : weight;
+  let fontWeight;
+  switch (weight) {
+    case 'bold':
+      fontWeight = '700';
+      break;
+    case 'black':
+      fontWeight = '900';
+      break;
+    case 'light':
+      fontWeight = '200';
+      break;
+    default:
+      fontWeight = 'normal';
+  }
   const textStyle = StyleSheet.create({
     textStyle: {
-      ...FONTS[fontSelect],
+      // ...FONTS[fontSelect],
+      fontStyle: italic ? 'italic' : 'normal',
+      fontWeight,
       color: COLORS[color],
       lineHeight: size * lineHeight,
       fontSize: size,
