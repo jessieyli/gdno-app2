@@ -30,7 +30,7 @@ const StyledInput = ({
         style={inputStyles}
         onChangeText={formProps.handleChange(formKey)}
         onBlur={formProps.handleBlur(formKey)}
-        value={formProps.values[formKey]}
+        value={(formProps.values[formKey] || '').toString()}
         {...rest}
       />
       {formProps.touched[formKey] && formProps.errors[formKey]
