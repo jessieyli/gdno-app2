@@ -27,6 +27,7 @@ const SettingsScreen = ({ navigation }) => {
   const [error, setError] = useState('');
   const [settings, setSettings] = useState(defaultSettings);
   const [requireLogin, setRequireLogin] = useState(false);
+  const reset = navigation.getParam('reset');
   const auth = useAuth();
 
   const loadSettings = (user) => {
@@ -53,7 +54,9 @@ const SettingsScreen = ({ navigation }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setRequireLogin(true);
+      if (loading) {
+        setRequireLogin(true);
+      }
     }, 5000);
 
     return () => {
@@ -63,11 +66,11 @@ const SettingsScreen = ({ navigation }) => {
 
   useEffect(
     () => {
-      if (loading && auth.user) {
+      if ((loading || reset) && auth.user) {
         loadSettings(auth.user);
       }
     },
-    [auth, loading],
+    [auth, loading, reset],
   );
 
   const handleSignOut = () => {

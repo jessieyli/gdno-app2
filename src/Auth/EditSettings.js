@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView, View, StyleSheet
 } from 'react-native';
@@ -24,13 +24,15 @@ const validationSchema = yup.object().shape({
   lastName: yup
     .string()
     .label('Last Name'),
-  email: yup
-    .string()
-    .label('Email')
-    .email(),
   zipcode: yup
     .number()
     .label('Zipcode'),
+  reminderTime: yup
+    .string()
+    .matches(/^(1[0-2]|0[1-9]):([0-5]?[0-9])(\s?[AP]M)?$/, {
+      excludeEmptyString: true,
+      message: 'Bad formatting. Please use HH:mm AM/AM'
+    }),
 });
 
 const ss = StyleSheet.create({
@@ -39,6 +41,10 @@ const ss = StyleSheet.create({
   },
   centered,
   safeArea,
+  saveButtonSpacing: {
+    marginTop: space[2],
+    marginBottom: space[1],
+  }
 });
 
 const SettingsScreen = ({ navigation }) => {
@@ -53,7 +59,7 @@ const SettingsScreen = ({ navigation }) => {
     addUserSettings(user.uid, values)
       .then(() => {
         setLoading(false);
-        navigation.navigate('Settings');
+        navigation.navigate('Settings', { reset: true });
       })
       .catch((err) => {
         handleError(err);
@@ -96,36 +102,32 @@ const SettingsScreen = ({ navigation }) => {
                 formKey="lastName"
               />
               <StyledInput
-                label="Email"
-                formProps={fProps}
-                formKey="email"
-                keyboardType="email-address"
-              />
-              <StyledInput
                 isEditing
                 label="Zipcode"
                 formProps={fProps}
                 formKey="zipcode"
                 keyboardType="number-pad"
               />
-              {true // || userPermissions.hasFlag('NOTIFICATIONS')
-              && (
-              <React.Fragment>
-                <StyledInput
-                  isEditing
-                  label="Water Time"
-                  formProps={fProps}
-                  formKey="waterTime"
-                />
-                <Type size={10} color="medGray" weight="bold">
-                  When you have notifications on, this is the time of day we'll
-                   remind you to do things in your garden.
-                </Type>
-              </React.Fragment>
+              {// TODO: Check for feature 'NOTIFICATIONS'
+              (
+                <React.Fragment>
+                  <StyledInput
+                    isEditing
+                    label="Reminder Time"
+                    formProps={fProps}
+                    formKey="reminderTime"
+                  />
+                  <Type size={10} color="medGray" weight="bold">
+                  When you have notifications on, this is the time of day
+                   we&apos;ll remind you to do things in your garden.
+                  </Type>
+                </React.Fragment>
               )
               }
-
-              <Button color="cyan" onPress={fProps.handleSubmit}>Save</Button>
+              <View style={ss.saveButtonSpacing}>
+                <Button color="cyan" onPress={fProps.handleSubmit}>Save</Button>
+              </View>
+              <Type color="medGray" align="center">To update your email or password, please contact us</Type>
             </View>
           )}
         </Formik>

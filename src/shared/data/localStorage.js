@@ -106,7 +106,7 @@ export const getStoredDataOfType = async (type) => {
   return results;
 };
 
-export const clearKeys = async () => {
+export const clearAllKeys = async () => {
   let keys;
   try {
     keys = await AsyncStorage.getAllKeys();
