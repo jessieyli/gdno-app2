@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-  SafeAreaView, View, StyleSheet
+  SafeAreaView, View, StyleSheet, Linking
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { isEmpty } from 'lodash';
 
 import {
-  space, safeArea, PROPSHAPES, centered
+  space, safeArea, PROPSHAPES, centered, hitSlop, LINKS
 } from '../shared/constants';
 import {
   StyledInput, Button, ErrorState, PageLoader, Type
@@ -29,9 +29,9 @@ const validationSchema = yup.object().shape({
     .label('Zipcode'),
   reminderTime: yup
     .string()
-    .matches(/^(1[0-2]|0[1-9]):([0-5]?[0-9])(\s?[AP]M)?$/, {
+    .matches(/^(1[0-2]|0[1-9]):([0-5]?[0-9])(\s?[AP]M)$/, {
       excludeEmptyString: true,
-      message: 'Bad formatting. Please use HH:mm AM/AM'
+      message: 'Bad formatting. Please use HH:mm AM/PM'
     }),
 });
 
@@ -52,6 +52,14 @@ const SettingsScreen = ({ navigation }) => {
   const [error, setError] = useState('');
   const auth = useAuth();
   const initialSettings = { ...navigation.state.params };
+
+  const handleEmailPress = () => {
+    Linking
+      .openURL(LINKS.help)
+      .catch((e) => {
+        handleError(e);
+      });
+  };
 
   const submitSettings = (values) => {
     const { user } = auth;
@@ -108,14 +116,15 @@ const SettingsScreen = ({ navigation }) => {
                 formKey="zipcode"
                 keyboardType="number-pad"
               />
-              {// TODO: Check for feature 'NOTIFICATIONS'
-              (
+              {auth.hasFeature('NOTIFICATIONS')
+              && (
                 <React.Fragment>
                   <StyledInput
                     isEditing
                     label="Reminder Time"
                     formProps={fProps}
                     formKey="reminderTime"
+                    placeholder="05:30 PM"
                   />
                   <Type size={10} color="medGray" weight="bold">
                   When you have notifications on, this is the time of day
@@ -127,7 +136,15 @@ const SettingsScreen = ({ navigation }) => {
               <View style={ss.saveButtonSpacing}>
                 <Button color="cyan" onPress={fProps.handleSubmit}>Save</Button>
               </View>
-              <Type color="medGray" align="center">To update your email or password, please contact us</Type>
+              <Type color="medGray" align="center">
+                To update your email or password,
+              </Type>
+              <Type color="medGray" align="center">
+                shoot us an email at
+              </Type>
+              <Type color="cyan" onPress={handleEmailPress} hitSlop={hitSlop} selectable align="center">
+                {' help@growgardenio.com'}
+              </Type>
             </View>
           )}
         </Formik>

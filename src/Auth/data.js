@@ -4,12 +4,19 @@ import 'firebase/firestore';
 import { setValue, getValue } from '../shared/data/localStorage';
 import handleError from '../shared/data/handleError';
 
-const settingsKeys = ['firstName', 'lastName', 'growerType', 'zipcode'];
+const settingsKeys = [
+  'firstName',
+  'lastName',
+  'growerType',
+  'zipcode',
+  'reminderTime',
+];
 export const defaultSettings = {
   firstName: '',
   lastName: '',
   email: '',
   zipcode: '',
+  reminderTime: '',
 };
 
 function getValidKeypairs(object, keyList) {

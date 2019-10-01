@@ -15,6 +15,7 @@ const Type = ({
   align = 'left',
   lineHeight = 1.5,
   letterSpacing = 0,
+  ...rest,
 }) => {
   if (!children) return null;
   // const fontSelect = italic ? `${weight}Italic` : weight;
@@ -45,7 +46,7 @@ const Type = ({
     }
   });
   return (
-    <Text style={[textStyle.textStyle, style]}>
+    <Text style={[textStyle.textStyle, style]} {...rest}>
       {uppercase ? children.toUpperCase() : children}
     </Text>
   );
