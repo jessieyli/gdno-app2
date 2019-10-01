@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import { View, Image } from 'react-native';
 
 import logo from '../assets/icon-transparent.png';
+import SettingsIcon from '../icons/person_outlined.svg';
 import Home from '../../Home/Home';
 import MyCareGuides from '../../CareGuides/MyCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
@@ -11,7 +12,7 @@ import EditSettings from '../../Auth/EditSettings';
 import Help from '../../Help/Help';
 import GettingStarted from '../../GettingStarted/GettingStarted';
 import { centeredHeader } from '../constants';
-import { LogOutButton } from '../components';
+import { Touchable } from '../components';
 
 const MainNavigation = createStackNavigator(
   {
@@ -28,7 +29,13 @@ const MainNavigation = createStackNavigator(
         ),
         ...centeredHeader,
         headerLeft: (<View />),
-        headerRight: (<LogOutButton />),
+        headerRight: (
+          <Touchable onPress="Settings">
+            <View style={{ paddingHorizontal: 16, backgroundColor: '#ffffff' }}>
+              <SettingsIcon height="20px" width="16px" />
+            </View>
+          </Touchable>
+        ),
       }),
     },
     CareGuides: {
