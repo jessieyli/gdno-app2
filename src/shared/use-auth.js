@@ -14,6 +14,19 @@ export const useAuth = () => useContext(authContext);
 
 function useProvideAuth() {
   const [user, setUser] = useState(null);
+  const [features, setFeatures] = useState([]);
+
+  const fetchAndSaveUserFeatures = async (userId) => {
+    const result = await firebase
+      .firestore()
+      .collection('users')
+      .doc(userId)
+      .get();
+    const settings = result.data();
+    if (settings.features !== undefined) {
+      setFeatures(settings.features);
+    }
+  };
 
   const signin = (email, password) => firebase
     .auth()
@@ -21,6 +34,10 @@ function useProvideAuth() {
     .then((response) => {
       setUser(response.user);
       return response.user;
+    })
+    .then((u) => {
+      fetchAndSaveUserFeatures(u.uid);
+      return u;
     });
 
   const signup = (email, password) => firebase
@@ -48,10 +65,13 @@ function useProvideAuth() {
     .confirmPasswordReset(code, password)
     .then(() => true);
 
+  const hasFeature = name => features.indexOf(name) >= 0;
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((u) => {
       if (u) {
         setUser(u);
+        fetchAndSaveUserFeatures(u.uid);
       } else {
         setUser(false);
       }
@@ -62,6 +82,8 @@ function useProvideAuth() {
 
   return {
     user,
+    features,
+    hasFeature,
     signin,
     signup,
     signout,
