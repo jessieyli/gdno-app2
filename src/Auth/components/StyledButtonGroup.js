@@ -20,19 +20,21 @@ const styles = StyleSheet.create({
   },
   selectedButton: {
     flexGrow: 1,
-    paddingVertical: space[4],
-    paddingHorizontal: space[2],
+    alignItems: 'stretch',
     backgroundColor: COLORS.grass,
   },
   unselectedButton: {
     flexGrow: 1,
-    paddingVertical: space[4],
-    paddingHorizontal: space[2],
+    alignItems: 'stretch',
     backgroundColor: COLORS.white,
   },
   firstButton: {
     borderRightWidth: borderWide,
     borderRightColor: COLORS.grass,
+  },
+  buttonInner: {
+    paddingVertical: space[4],
+    paddingHorizontal: space[2],
   }
 });
 
@@ -43,43 +45,61 @@ const GrowerTypeButtonGroup = ({ formProps, formKey }) => {
   return (
     <React.Fragment>
       <View style={styles.buttonGroup}>
-        <Touchable
-          onPress={() => handlePress('new')}
+        <View
+          style={[
+            styles.firstButton,
+            formProps.values[formKey] === 'new'
+              ? styles.selectedButton
+              : styles.unselectedButton
+          ]}
         >
-          <View
-            style={[
-              styles.firstButton,
-              formProps.values[formKey] === 'new'
-                ? styles.selectedButton
-                : styles.unselectedButton
-            ]}
+          <Touchable
+            onPress={() => handlePress('new')}
           >
-            <ButtonText
-              align="center"
-              color={formProps.values[formKey] === 'new' ? 'white' : 'grass'}
+            <View
+              style={styles.buttonInner}
             >
-              I&apos;m a new grower
-            </ButtonText>
-          </View>
-        </Touchable>
-        <Touchable
-          onPress={() => handlePress('old')}
+              <ButtonText
+                align="center"
+                color={formProps.values[formKey] === 'new' ? 'white' : 'grass'}
+              >
+              I&apos;m a new
+              </ButtonText>
+              <ButtonText
+                align="center"
+                color={formProps.values[formKey] === 'new' ? 'white' : 'grass'}
+              >
+              grower
+              </ButtonText>
+            </View>
+          </Touchable>
+        </View>
+        <View
+          style={
+            formProps.values[formKey] === 'old'
+              ? styles.selectedButton
+              : styles.unselectedButton
+          }
         >
-          <View
-            style={
-              formProps.values[formKey] === 'old'
-                ? styles.selectedButton
-                : styles.unselectedButton
-            }
+          <Touchable
+            onPress={() => handlePress('old')}
           >
-            <ButtonText
-              align="center"
-              color={formProps.values[formKey] === 'old' ? 'white' : 'grass'}
-            >
-              I&apos;ve done this before
-            </ButtonText>
-          </View>
-        </Touchable>
+            <View style={styles.buttonInner}>
+              <ButtonText
+                align="center"
+                color={formProps.values[formKey] === 'old' ? 'white' : 'grass'}
+              >
+            I&apos;ve done
+              </ButtonText>
+              <ButtonText
+                align="center"
+                color={formProps.values[formKey] === 'old' ? 'white' : 'grass'}
+              >
+            this before
+              </ButtonText>
+            </View>
+          </Touchable>
+        </View>
       </View>
       {formProps.errors[formKey]
         && (
