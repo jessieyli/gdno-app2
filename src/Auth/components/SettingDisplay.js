@@ -17,7 +17,7 @@ const SettingDisplay = ({
   <View style={ss.settingGroup}>
     <FormLabel>{label}</FormLabel>
     {value
-      ? <FormInput>{value}</FormInput>
+      ? <FormInput>{(value || '').toString()}</FormInput>
       : <Type size={24} weight="light" color="lightGray">No info saved</Type>
     }
   </View>
@@ -25,7 +25,9 @@ const SettingDisplay = ({
 
 SettingDisplay.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.number
+  ]),
 };
 
 export default SettingDisplay;

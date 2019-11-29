@@ -6,7 +6,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { COLORS, space } from '../../shared/constants';
-import { Body, Touchable, Type } from '../../shared/components';
+import { Body, Touchable, Cross } from '../../shared/components';
 import ThumbnailWithFallback from './ThumbnailWithFallback';
 import SelectIndicator from './SelectIndicator';
 
@@ -88,7 +88,7 @@ const ListItemWithImage = ({
           && (
           <Touchable onPress={handleRemove} style={ss.closeIcon}>
             <View style={ss.removeButton}>
-              <Type size={24} color="gray">X</Type>
+              <Cross strokeColor="medGray" />
             </View>
           </Touchable>
           )

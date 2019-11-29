@@ -28,7 +28,7 @@ const ErrorState = ({
     <View style={ss.text}>
       <SubHead align="center" weight="bold">{title}</SubHead>
       <Body align="center">{details}</Body>
-      {callToAction
+      {!!callToAction
         && (
         <View style={ss.callToAction}>
           <Button onPress={action}>{callToAction}</Button>

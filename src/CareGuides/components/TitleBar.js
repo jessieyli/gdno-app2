@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { space } from '../../shared/constants';
-import { NavText, Touchable, Type } from '../../shared/components';
+import { space, COLORS } from '../../shared/constants';
+import { NavText, Touchable, Chevron } from '../../shared/components';
 import ThumbnailWithFallback from './ThumbnailWithFallback';
 
 const ss = StyleSheet.create({
@@ -49,7 +49,7 @@ const TitleBar = ({
       && (
         <Touchable onPress={onClickBack}>
           <View style={ss.backButton}>
-            <Type color="gray" size={30}>{'<'}</Type>
+            <Chevron pointing="left" strokeColor="gray" />
           </View>
         </Touchable>
       )

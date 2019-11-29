@@ -14,20 +14,39 @@ const Type = ({
   style = {},
   align = 'left',
   lineHeight = 1.5,
+  letterSpacing = 0,
+  ...rest,
 }) => {
   if (!children) return null;
-  const fontSelect = italic ? `${weight}Italic` : weight;
+  // const fontSelect = italic ? `${weight}Italic` : weight;
+  let fontWeight;
+  switch (weight) {
+    case 'bold':
+      fontWeight = '700';
+      break;
+    case 'black':
+      fontWeight = '900';
+      break;
+    case 'light':
+      fontWeight = '200';
+      break;
+    default:
+      fontWeight = 'normal';
+  }
   const textStyle = StyleSheet.create({
     textStyle: {
       // ...FONTS[fontSelect],
+      fontStyle: italic ? 'italic' : 'normal',
+      fontWeight,
       color: COLORS[color],
       lineHeight: size * lineHeight,
       fontSize: size,
       textAlign: align,
+      letterSpacing,
     }
   });
   return (
-    <Text style={[textStyle.textStyle, style]}>
+    <Text style={[textStyle.textStyle, style]} {...rest}>
       {uppercase ? children.toUpperCase() : children}
     </Text>
   );
@@ -63,6 +82,7 @@ Type.propTypes = {
   ]),
   style: PropTypes.object,
   lineHeight: PropTypes.number,
+  letterSpacing: PropTypes.number,
 };
 
 export const Header = props => (<Type weight="bold" size={36} lineHeight={1.1} {...props} />);
@@ -73,8 +93,7 @@ export const Body = props => (<Type weight="light" size={16} {...props} />);
 export const SectionTitle = props => (<Type weight="medium" size={16} {...props} />);
 export const NavText = props => (<Type weight="black" size={12} {...props} />);
 export const TextHeader = props => (<Type weight="bold" size={12} {...props} />);
-export const FormLabel = props => (<Type weight="bold" size={12} color="lightishGray" uppercase style={{ letterSpacing: 1 }} {...props} />);
-// TODO add letterSpacing 2 when bold works
-export const ButtonText = props => (<Type weight="bold" size={12} color="white" align="center" uppercase style={{ letterSpacing: 1 }} {...props} />);
+export const FormLabel = props => (<Type weight="bold" size={12} color="lightishGray" uppercase letterSpacing={1} {...props} />);
+export const ButtonText = props => (<Type weight="bold" size={12} color="white" align="center" uppercase letterSpacing={2} {...props} />);
 
 export default Type;

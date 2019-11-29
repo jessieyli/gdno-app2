@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  Image,
   View,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -77,10 +76,7 @@ const FeatureBlock = ({
   return (
     <Paper style={ss.bounds}>
       <View style={ss.imageArea}>
-        <Image
-          source={content.icon}
-          style={{ width: 40, height: 40 }}
-        />
+        {content.icon}
       </View>
       <TextHeader style={{ lineHeight: 14 }} uppercase color="grass">{content.text}</TextHeader>
     </Paper>

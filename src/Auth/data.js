@@ -4,7 +4,20 @@ import 'firebase/firestore';
 import { setValue, getValue } from '../shared/data/localStorage';
 import handleError from '../shared/data/handleError';
 
-const settingsKeys = ['firstName', 'lastName', 'growerType', 'zipcode'];
+const settingsKeys = [
+  'firstName',
+  'lastName',
+  'growerType',
+  'zipcode',
+  'reminderTime',
+];
+export const defaultSettings = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  zipcode: '',
+  reminderTime: '',
+};
 
 function getValidKeypairs(object, keyList) {
   const returnObj = {};
@@ -26,6 +39,12 @@ export const getStoredUser = async () => {
   }
   return result;
 };
+
+export const getSettings = async authUser => firebase
+  .firestore()
+  .collection('users')
+  .doc(authUser.uid)
+  .get();
 
 export const addUserSettings = async (uid, settings) => {
   const userSettings = getValidKeypairs(settings, settingsKeys);

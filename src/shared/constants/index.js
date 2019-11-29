@@ -4,6 +4,24 @@ import COLORS from './colors';
 
 export { default as COLORS, colorKeys } from './colors';
 
+export const FONTS = {
+  medium: {
+    fontFamily: 'CircularAirPro-Medium',
+  },
+  bold: {
+    fontFamily: 'CircularAirPro-Bold',
+  },
+  black: {
+    fontFamily: 'CircularAirPro-Black',
+  },
+  light: {
+    fontFamily: 'CircularAirPro-Light',
+  },
+  lightItalic: {
+    fontFamily: 'CircularAirPro-Light',
+  },
+};
+
 /* STYLES */
 export const space = [4, 8, 16, 24, 32, 40, 48, 56, 64];
 

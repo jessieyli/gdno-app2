@@ -3,14 +3,15 @@ import { createStackNavigator } from 'react-navigation';
 import { View, Image } from 'react-native';
 
 import logo from '../assets/icon-transparent.png';
+import LogOutButton from '../components/LogOutButton';
 import Home from '../../Home/Home';
 import MyCareGuides from '../../CareGuides/MyCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
-// import Settings from '../../Settings/Settings';
+import Settings from '../../Auth/Settings';
+import EditSettings from '../../Auth/EditSettings';
 import Help from '../../Help/Help';
 import GettingStarted from '../../GettingStarted/GettingStarted';
 import { centeredHeader } from '../constants';
-import { LogOutButton } from '../components';
 
 const MainNavigation = createStackNavigator(
   {
@@ -39,18 +40,25 @@ const MainNavigation = createStackNavigator(
     },
     CareGuide,
     Help,
-    // Settings: {
-    //   screen: Settings,
-    //   path: 'settings',
-    //   navigationOptions: () => ({
-    //     headerTitle: 'Profile',
-    //     ...centeredHeader,
-    //   }),
-    // },
+    Settings: {
+      screen: Settings,
+      path: 'settings',
+      navigationOptions: () => ({
+        headerTitle: 'Profile',
+        ...centeredHeader,
+      }),
+    },
+    EditSettings: {
+      screen: EditSettings,
+      navigationOptions: () => ({
+        headerTitle: 'Edit Profile',
+        ...centeredHeader,
+      }),
+    },
     GettingStarted: {
       screen: GettingStarted,
       navigationOptions: () => ({
-        headerTitle: 'Getting Started',
+        headerTitle: 'Get Started',
         ...centeredHeader,
       }),
     },
