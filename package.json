@@ -9,7 +9,8 @@
     "ios-mini": "react-native run-ios --configuration Release",
     "android-mini": "react-native run-android --version release",
     "devices": "xcrun simctl list devices",
-    "start-release": "expo start --no-dev --minify"
+    "start-release": "expo start --no-dev --minify",
+    "clean": "rm -r node_modules; rm -r ios/Pods"
   },
   "dependencies": {
     "axios": "^0.19.0",
