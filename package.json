@@ -13,6 +13,7 @@
     "clean": "rm -r node_modules; rm -r ios/Pods"
   },
   "dependencies": {
+    "@sentry/react-native": "^1.1.0",
     "axios": "^0.19.0",
     "expo": "^34.0.1",
     "expo-web-browser": "^6.0.0",
