@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import PropTypes from 'prop-types';
+import Markdown from 'react-native-simple-markdown';
 
 import handleError from '../shared/data/handleError';
 import {

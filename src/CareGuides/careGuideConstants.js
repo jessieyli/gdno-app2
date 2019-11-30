@@ -44,17 +44,17 @@ export const lifespanFeatures = {
     text: 'Annual',
     icon: (<AnnualIcon width={40} height={40} />),
     detailKey: '',
-    content: 'Annuals are plants that only last one growing season, from germination to seed production. A great, low-pressure plant that you can just try again next season!',
+    content: 'Annuals are plants that only last _one_ growing season, from germination to seed production. A great, low-pressure plant that you can just try again next season!',
   },
   biennial: {
     text: 'Biennial',
     icon: (<BiennialIcon width={40} height={40} />),
-    content: 'A biennial plant is one that takes 2 years to complete its growing cycle. The first year it grows what are called "vegetative structures" (leaves, stems, roots) and also happen to usually be the things we harvest to eat. The flowers, fruits, and seeds of the plant can be harvested the next year, although most of these types of plants require a long cold period for the flowering mechanism to be triggered.',
+    content: 'A biennial plant is one that takes *2* years to complete its growing cycle. The first year it grows what are called "vegetative structures" (leaves, stems, roots) and also happen to usually be the things we harvest to eat. The flowers, fruits, and seeds of the plant can be harvested the next year, although most of these types of plants require a long cold period for the flowering mechanism to be triggered.',
   },
   perennial: {
     text: 'Perennial',
     icon: (<PerennialIcon width={40} height={40} />),
-    content: 'Perennials are, simply put, plants that last longer than 2 years.',
+    content: 'Perennials are, simply put, plants that last _longer_ than 2 years.',
   }
 };
 

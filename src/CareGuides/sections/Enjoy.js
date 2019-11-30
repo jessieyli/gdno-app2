@@ -8,6 +8,7 @@ import {
   Body,
   Header,
   SectionTitle,
+  Markdown,
 } from '../../shared/components';
 import { styles } from '../careGuideConstants';
 import { PROPSHAPES } from '../../shared/constants';
@@ -37,7 +38,7 @@ const Enjoy = ({
           <SectionTitle uppercase color="medGray">Harvest It</SectionTitle>
         </View>
 
-        <Body>{info.howToHarvest || 'Info coming soon!'}</Body>
+        <Markdown>{info.howToHarvest || 'Info coming soon!'}</Markdown>
       </View>
 
       <View style={ss.section}>
@@ -45,7 +46,7 @@ const Enjoy = ({
           <SectionTitle uppercase color="medGray">Store It</SectionTitle>
         </View>
 
-        <Body>{info.howToStore || 'Info coming soon!'}</Body>
+        <Markdown>{info.howToStore || 'Info coming soon!'}</Markdown>
       </View>
     </View>
   );

@@ -10,6 +10,7 @@ import {
   SectionTitle,
   Touchable,
   Paper,
+  Markdown,
 } from '../../shared/components';
 import StandardModal from '../components/StandardModal';
 import {
@@ -116,7 +117,7 @@ const Grow = ({ info }) => {
       >
         <View style={ss.padded}>
           <Header>{modalContent.title}</Header>
-          <Body>{modalContent.content}</Body>
+          <Markdown>{modalContent.content}</Markdown>
         </View>
       </StandardModal>
     </View>
