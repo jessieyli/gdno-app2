@@ -1,9 +1,10 @@
 const cyan = '#41B6AC';
+const blue = '#009FB9';
 const grass = '#73B641';
 const green = '#1D812B';
 const royal = '#5116DE';
 const magenta = '#DD3787';
-const tangerine = '#FF881F';
+const tangerine = '#EC7E18';
 const gray = '#424242';
 const medGray = '#636C74';
 const lightishGray = '#a6a6a6';
@@ -13,13 +14,19 @@ const warning = '#d4851a';
 const offWhite = '#fafafa';
 const white = '#ffffff';
 
+const blueLight = '#E8FCFF';
+const tangerineLight = '#FFF4EA';
+
 export const colorKeys = [
+  'blue',
+  'blueLight',
   'cyan',
   'grass',
   'green',
   'royal',
   'magenta',
   'tangerine',
+  'tangerineLight',
   'gray',
   'medGray',
   'lightishGray',
@@ -40,12 +47,15 @@ export const colorKeys = [
 ];
 
 export default {
+  blue,
+  blueLight,
   cyan,
   grass,
   green,
   royal,
   magenta,
   tangerine,
+  tangerineLight,
   gray,
   medGray,
   lightishGray,
