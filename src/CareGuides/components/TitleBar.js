@@ -8,8 +8,9 @@ import {
 import PropTypes from 'prop-types';
 
 import { space, COLORS } from '../../shared/constants';
-import { NavText, Touchable, Chevron } from '../../shared/components';
-import ThumbnailWithFallback from './ThumbnailWithFallback';
+import {
+  NavText, Touchable, Chevron, ThumbnailWithFallback
+} from '../../shared/components';
 
 const ss = StyleSheet.create({
   container: {

@@ -6,8 +6,8 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { COLORS } from '../../shared/constants';
-import { DetailHeader } from '../../shared/components';
+import { COLORS } from '../constants';
+import { DetailHeader } from './Type';
 
 // TODO: Cache images
 // https://docs.expo.io/versions/latest/guides/preloading-and-caching-assets/
