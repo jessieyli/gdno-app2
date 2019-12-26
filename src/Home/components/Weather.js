@@ -89,9 +89,15 @@ Weather.propTypes = {
   zipcode: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-  ]).isRequired,
-  loadingZipcode: PropTypes.bool.isRequired,
+  ]),
+  loadingZipcode: PropTypes.bool,
   style: PropTypes.object,
+};
+
+Weather.defaultProps = {
+  zipcode: null,
+  loadingZipcode: true,
+  style: {},
 };
 
 export default Weather;

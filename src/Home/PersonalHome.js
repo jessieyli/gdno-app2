@@ -78,7 +78,7 @@ const PersonalHome = (props) => {
     <ScrollView style={styles.container}>
       <View style={styles.weatherSection}>
         <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
-        {zipcode ? (
+        {zipcode || loadingZipcode ? (
           <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
         ) : (
           <View style={styles.infoBox}>
