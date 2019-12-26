@@ -14,19 +14,19 @@ const warning = '#d4851a';
 const offWhite = '#fafafa';
 const white = '#ffffff';
 
-const blueLight = '#E8FCFF';
-const tangerineLight = '#FFF4EA';
+const blueTint = '#E8FCFF';
+const tangerineTint = '#FFF4EA';
 
 export const colorKeys = [
   'blue',
-  'blueLight',
+  'blueTint',
   'cyan',
   'grass',
   'green',
   'royal',
   'magenta',
   'tangerine',
-  'tangerineLight',
+  'tangerineTint',
   'gray',
   'medGray',
   'lightishGray',
@@ -48,14 +48,14 @@ export const colorKeys = [
 
 export default {
   blue,
-  blueLight,
+  blueTint,
   cyan,
   grass,
   green,
   royal,
   magenta,
   tangerine,
-  tangerineLight,
+  tangerineTint,
   gray,
   medGray,
   lightishGray,

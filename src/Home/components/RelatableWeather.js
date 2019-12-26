@@ -45,13 +45,13 @@ const RelatableWeather = ({
     if (concerns.cold(firstAlert)) {
       return {
         icon: '❄️',
-        body: 'The temperatures are dropping like it\'s… gonna freeze soon! Most plants should be covered or brought inside while it freezes, but some actually thrive in it. Check your plants\' care guides for guidance.'
+        body: 'Looks like it\'s pretty cold outside! Most plants should be covered or brought inside while it freezes, but some actually thrive in it. Check your plants\' care guides for guidance.'
       };
     }
     if (concerns.precip(firstAlert)) {
       return {
         icon: '🌧',
-        body: 'Looks like it may rain soon. Put that rain water to work and let your plants splish splash. Some may like less water though, so check your care guides, per always.'
+        body: 'Looks like it may rain soon. Put that rain water to work and let your plants splish splash. Some may like less water though, so check your care guides for specifics about what your plant likes, per always.'
       };
     }
     return null;

@@ -5,6 +5,7 @@ import { View, Image } from 'react-native';
 import logo from '../assets/icon-transparent.png';
 import LogOutButton from '../components/LogOutButton';
 import Home from '../../Home/Home';
+import PersonalHome from '../../Home/PersonalHome';
 import MyCareGuides from '../../CareGuides/MyCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
 import Settings from '../../Auth/Settings';
@@ -16,7 +17,7 @@ import { centeredHeader } from '../constants';
 const MainNavigation = createStackNavigator(
   {
     Home: {
-      screen: Home,
+      screen: PersonalHome,
       navigationOptions: () => ({
         headerTitle: (
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
