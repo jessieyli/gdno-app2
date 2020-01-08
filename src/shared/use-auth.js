@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { firebaseConfig } from './secrets';
 import { setValue } from './data/localStorage';
+import handleError from './data/handleError';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -22,17 +23,21 @@ function useProvideAuth() {
   };
 
   const fetchAndSaveUserFeatures = async (userId) => {
-    const result = await firebase
-      .firestore()
-      .collection('users')
-      .doc(userId)
-      .get();
-    const settings = result.data();
-    if (settings.features !== undefined) {
-      setFeatures(settings.features);
-    }
-    if (settings.zipcode !== undefined) {
-      storeZipcode(settings.zipcode);
+    try {
+      const result = await firebase
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .get();
+      const settings = result.data();
+      if (settings.features !== undefined) {
+        setFeatures(settings.features);
+      }
+      if (settings.zipcode !== undefined) {
+        storeZipcode(settings.zipcode);
+      }
+    } catch (err) {
+      handleError(err);
     }
   };
 
