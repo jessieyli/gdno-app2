@@ -29,3 +29,4 @@ export { default as PageLoader } from './PageLoader';
 export { default as StyledInput } from './StyledInput';
 
 /* GALAXIES */
+export { default as StandardModal } from './StandardModal';
