@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
-  View,
   ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -35,6 +34,7 @@ const MySavedPlants = ({
   style,
   navigate,
   signout,
+  reloadToggle,
   ...passedProps,
 }) => {
   const [loading, setLoading] = useState(false);
@@ -47,7 +47,6 @@ const MySavedPlants = ({
     loadStoredPlants()
       .then((downloadedPlants) => {
         setPlants(downloadedPlants);
-        console.log(downloadedPlants);
         setLoading(false);
       })
       .catch((e) => {
@@ -56,7 +55,7 @@ const MySavedPlants = ({
         setError(true);
       });
     return () => { setError(false); setErrorCount(0); setLoading(false); };
-  }, []);
+  }, [reloadToggle]);
 
   const loadPlants = async () => {
     setLoading(true);
@@ -113,6 +112,7 @@ const MySavedPlants = ({
 
 MySavedPlants.propTypes = {
   navigate: PropTypes.func.isRequired,
+  reloadToggle: PropTypes.bool,
 };
 
 export default MySavedPlants;

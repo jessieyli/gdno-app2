@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
 const PersonalHome = (props) => {
   const [zipcode, setZipcode] = useState(null);
   const [loadingZipcode, setLoadingZipcode] = useState(false);
+  const [reloadPlantsToggle, setReloadPlantsToggle] = useState(1);
   const auth = useAuth();
 
   const loadZipcode = () => {
@@ -68,6 +69,11 @@ const PersonalHome = (props) => {
       });
   };
 
+  const handleRefresh = () => {
+    loadZipcode();
+    setReloadPlantsToggle(reloadPlantsToggle * -1);
+  };
+
   useEffect(() => {
     loadZipcode();
   }, []);
@@ -76,7 +82,7 @@ const PersonalHome = (props) => {
     <ScrollView
       style={styles.container}
       refreshControl={
-        <RefreshControl refreshing={loadingZipcode} onRefresh={loadZipcode} />
+        <RefreshControl refreshing={loadingZipcode} onRefresh={handleRefresh} />
       }
     >
       <View style={styles.weatherSection}>
@@ -91,7 +97,7 @@ const PersonalHome = (props) => {
                  experience because you don&apos;t have your zipcode set.
               </Type>
             </View>
-            <Button onPress="EditSettings">Add your Zipcode</Button>
+            <Button onPress="Settings">Add your Zipcode</Button>
           </View>
         )}
 
@@ -107,7 +113,11 @@ const PersonalHome = (props) => {
             </Touchable>
           </Media.Item>
         </Media>
-        <MySavedPlants navigate={props.navigation.navigate} signout={auth.signout} />
+        <MySavedPlants
+          reloadToggle={reloadPlantsToggle}
+          navigate={props.navigation.navigate}
+          signout={auth.signout}
+        />
       </View>
     </ScrollView>
   );
