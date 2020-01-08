@@ -57,7 +57,7 @@ const RelatableWeather = ({
     return null;
   }, [dailyData]);
 
-  if (!dailyData || !content) {
+  if (!dailyData || dailyData.length === 0 || !content) {
     return null;
   }
 

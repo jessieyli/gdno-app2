@@ -34,6 +34,10 @@ const styles = StyleSheet.create({
   },
   centered,
   padded,
+  loadContainer: {
+    flex: 1,
+    ...centered,
+  },
   bottomButton: {
     borderBottomWidth: 1,
     borderBottomColor: COLORS.lightGray,
@@ -99,11 +103,6 @@ const AddCareGuidesScreen = ({ navigation }) => {
   useEffect(() => {
     fetchAllPlants();
     fetchStoredPlants();
-
-    return () => {
-      setLoading(false);
-      setError(false);
-    };
   }, []);
 
   if (error) return <ErrorState details="We're having issues gathering the plant data. Please try again later." />;
@@ -111,7 +110,7 @@ const AddCareGuidesScreen = ({ navigation }) => {
   return (
     <Media style={styles.container}>
       <Media.Body style={styles.plantList}>
-        {loading || !plants
+        {loading || !plants || plants.length === 0
           ? (
             <View style={styles.centered}>
               <ActivityIndicator size="large" color={COLORS.magenta} />

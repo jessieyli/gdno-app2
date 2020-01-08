@@ -80,44 +80,45 @@ const PersonalHome = (props) => {
 
   return (
     <ScrollView
-      style={styles.container}
       refreshControl={
         <RefreshControl refreshing={loadingZipcode} onRefresh={handleRefresh} />
       }
     >
-      <View style={styles.weatherSection}>
-        <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
-        {zipcode || loadingZipcode ? (
-          <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
-        ) : (
-          <View style={styles.infoBox}>
-            <View style={styles.infoBoxText}>
-              <Type>
-                We can&apos;t show you the kind of weather your plants will
-                 experience because you don&apos;t have your zipcode set.
-              </Type>
+      <View style={styles.container}>
+        <View style={styles.weatherSection}>
+          <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
+          {zipcode || loadingZipcode ? (
+            <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
+          ) : (
+            <View style={styles.infoBox}>
+              <View style={styles.infoBoxText}>
+                <Type>
+                  We can&apos;t show you the kind of weather your plants will
+                   experience because you don&apos;t have your zipcode set.
+                </Type>
+              </View>
+              <Button onPress="Settings">Add your Zipcode</Button>
             </View>
-            <Button onPress="Settings">Add your Zipcode</Button>
-          </View>
-        )}
+          )}
 
-      </View>
-      <View style={styles.plantsSection}>
-        <Media direction="row" style={styles.plantTitles}>
-          <Media.Body>
-            <DetailHeader weight="bold">My plants</DetailHeader>
-          </Media.Body>
-          <Media.Item>
-            <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
-              <Type color="grass" weight="bold">Add a plant</Type>
-            </Touchable>
-          </Media.Item>
-        </Media>
-        <MySavedPlants
-          reloadToggle={reloadPlantsToggle}
-          navigate={props.navigation.navigate}
-          signout={auth.signout}
-        />
+        </View>
+        <View style={styles.plantsSection}>
+          <Media direction="row" style={styles.plantTitles}>
+            <Media.Body>
+              <DetailHeader weight="bold">My plants</DetailHeader>
+            </Media.Body>
+            <Media.Item>
+              <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
+                <Type color="grass" weight="bold">Add a plant</Type>
+              </Touchable>
+            </Media.Item>
+          </Media>
+          <MySavedPlants
+            reloadToggle={reloadPlantsToggle}
+            navigate={props.navigation.navigate}
+            signout={auth.signout}
+          />
+        </View>
       </View>
     </ScrollView>
   );
