@@ -26,7 +26,7 @@ const RelatableWeather = ({
       cold: d => d.temperatureMin <= 35,
       precip: d => d.precipProbability >= 0.4
     };
-    const firstAlert = dailyData.find(d => concerns.hot(d)
+    const firstAlert = dailyData.slice(0, 3).find(d => concerns.hot(d)
         || concerns.cold(d)
         || concerns.precip(d));
 

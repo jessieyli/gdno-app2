@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -72,7 +73,12 @@ const PersonalHome = (props) => {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      refreshControl={
+        <RefreshControl refreshing={loadingZipcode} onRefresh={loadZipcode} />
+      }
+    >
       <View style={styles.weatherSection}>
         <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
         {zipcode || loadingZipcode ? (
