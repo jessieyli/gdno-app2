@@ -4,14 +4,15 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+
 import {
-  Body,
   Header,
   SectionTitle,
   DetailHeader,
   Touchable,
+  Markdown,
+  StandardModal,
 } from '../../shared/components';
-import StandardModal from '../components/StandardModal';
 import {
   COLORS, PROPSHAPES, space, padded
 } from '../../shared/constants';
@@ -109,7 +110,9 @@ class Essentials extends Component {
           && (
           <View style={ss.topSection}>
             <Header>Essentials</Header>
-            <Body>{info.overview}</Body>
+            <Markdown>
+              {info.overview}
+            </Markdown>
           </View>
           )
         }
@@ -138,7 +141,9 @@ class Essentials extends Component {
         >
           <View style={ss.padded}>
             <Header>{featureDetails.title}</Header>
-            <Body>{featureDetails.content}</Body>
+            <Markdown>
+              {featureDetails.content}
+            </Markdown>
           </View>
         </StandardModal>
       </View>

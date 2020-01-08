@@ -7,8 +7,10 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { COLORS, space, safeArea } from '../../shared/constants';
-import { SectionTitle, Touchable, Cross } from '../../shared/components';
+import { COLORS, space, safeArea } from '../constants';
+import { SectionTitle } from './Type';
+import Touchable from './Touchable';
+import Cross from './Cross';
 
 const ss = StyleSheet.create({
   main: {

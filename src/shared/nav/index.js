@@ -3,20 +3,21 @@ import { createStackNavigator } from 'react-navigation';
 import { View, Image } from 'react-native';
 
 import logo from '../assets/icon-transparent.png';
-import LogOutButton from '../components/LogOutButton';
-import Home from '../../Home/Home';
-import MyCareGuides from '../../CareGuides/MyCareGuides';
+import PersonIcon from '../components/PersonIcon';
+import PersonalHome from '../../Home/PersonalHome';
+import AddCareGuides from '../../CareGuides/AddCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
 import Settings from '../../Auth/Settings';
 import EditSettings from '../../Auth/EditSettings';
 import Help from '../../Help/Help';
 import GettingStarted from '../../GettingStarted/GettingStarted';
-import { centeredHeader } from '../constants';
+import { Touchable } from '../components';
+import { centeredHeader, hitSlop } from '../constants';
 
 const MainNavigation = createStackNavigator(
   {
     Home: {
-      screen: Home,
+      screen: PersonalHome,
       navigationOptions: () => ({
         headerTitle: (
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
@@ -28,13 +29,19 @@ const MainNavigation = createStackNavigator(
         ),
         ...centeredHeader,
         headerLeft: (<View />),
-        headerRight: (<LogOutButton />),
+        headerRight: (
+          <Touchable onPress="Settings" hitSlop={hitSlop}>
+            <View style={{ paddingHorizontal: 16, backgroundColor: '#ffffff' }}>
+              <PersonIcon height={20} color="medGray" />
+            </View>
+          </Touchable>
+        ),
       }),
     },
-    CareGuides: {
-      screen: MyCareGuides,
+    AddCareGuides: {
+      screen: AddCareGuides,
       navigationOptions: () => ({
-        headerTitle: 'My Plants',
+        headerTitle: 'Add Care Guides',
         ...centeredHeader,
       }),
     },

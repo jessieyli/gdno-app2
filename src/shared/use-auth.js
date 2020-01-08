@@ -5,6 +5,8 @@ import React, {
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { firebaseConfig } from './secrets';
+import { setValue } from './data/localStorage';
+import handleError from './data/handleError';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -16,15 +18,26 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
   const [features, setFeatures] = useState([]);
 
+  const storeZipcode = (zipcode) => {
+    setValue('S_zipcode', zipcode);
+  };
+
   const fetchAndSaveUserFeatures = async (userId) => {
-    const result = await firebase
-      .firestore()
-      .collection('users')
-      .doc(userId)
-      .get();
-    const settings = result.data();
-    if (settings.features !== undefined) {
-      setFeatures(settings.features);
+    try {
+      const result = await firebase
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .get();
+      const settings = result.data();
+      if (settings.features !== undefined) {
+        setFeatures(settings.features);
+      }
+      if (settings.zipcode !== undefined) {
+        storeZipcode(settings.zipcode);
+      }
+    } catch (err) {
+      handleError(err);
     }
   };
 

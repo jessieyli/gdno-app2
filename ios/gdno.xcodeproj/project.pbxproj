@@ -18,6 +18,7 @@
 		8147094212C44C22B8F64BD7 /* CircularAirPro-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFD992FDB44EE5907BC16C /* CircularAirPro-Light.otf */; };
 		D80758946AA6444EB17A096C /* CircularAirPro-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C08823F0CA54A9C9A2C781C /* CircularAirPro-LightItalic.otf */; };
 		EDCBCEF2163A4AD8982EC5FE /* CircularAirPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 827E6E0EE21A4411AEB0BBB0 /* CircularAirPro-Medium.otf */; };
+		0CBA24D83C804769A1F8E1FA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D452B8C8D9848659BA50C43 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		5DDFD992FDB44EE5907BC16C /* CircularAirPro-Light.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Light.otf"; path = "../src/shared/fonts/CircularAirPro-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7C08823F0CA54A9C9A2C781C /* CircularAirPro-LightItalic.otf */ = {isa = PBXFileReference; name = "CircularAirPro-LightItalic.otf"; path = "../src/shared/fonts/CircularAirPro-LightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		827E6E0EE21A4411AEB0BBB0 /* CircularAirPro-Medium.otf */ = {isa = PBXFileReference; name = "CircularAirPro-Medium.otf"; path = "../src/shared/fonts/CircularAirPro-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D452B8C8D9848659BA50C43 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31E9BFF5E5A3F9EFEDB189B /* libPods-gdno.a in Frameworks */,
+				0CBA24D83C804769A1F8E1FA /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +120,7 @@
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				D58A37996249779191905DD1 /* libPods-gdno.a */,
 				3ACA61858FEBAD12077898F7 /* libPods-gdnoTests.a */,
+				9D452B8C8D9848659BA50C43 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,6 +182,14 @@
 			sourceTree = "<group>";
 			path = "";
 		};
+		4DB76CCEE8E34BEB95D3D4FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			path = Application;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,6 +222,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				C64036C1F9C14AE587647ABC /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -291,7 +304,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		301CF41A5068F102B69DAD91 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -355,6 +368,20 @@
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		C64036C1F9C14AE587647ABC /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Upload Debug Symbols to Sentry";
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
 		};
 /* End PBXShellScriptBuildPhase section */
 

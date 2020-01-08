@@ -1,7 +1,5 @@
-const handleError = (error) => {
-  // TODO: Add Sentry
-  const errorMessage = error.message ? error.message.toString() : error.toString();
-  // console.error(errorMessage);
-};
+import * as Sentry from '@sentry/react-native';
+
+const handleError = error => Sentry.captureException(error);
 
 export default handleError;

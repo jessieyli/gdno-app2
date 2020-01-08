@@ -10,7 +10,7 @@ import {
   PROPSHAPES, COLORS, space, centered, padded
 } from '../shared/constants';
 import {
-  Button, Header, SectionTitle, ErrorState
+  Button, Header, SectionTitle, ErrorState, StandardModal,
 } from '../shared/components';
 
 import {
@@ -18,7 +18,6 @@ import {
 } from './data';
 import CareGuideEmptyState from './components/CareGuideEmptyState';
 import PlantList from './components/PlantList';
-import StandardModal from './components/StandardModal';
 
 const styles = StyleSheet.create({
   container: {
