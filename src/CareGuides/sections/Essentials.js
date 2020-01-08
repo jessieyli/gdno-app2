@@ -11,8 +11,8 @@ import {
   DetailHeader,
   Touchable,
   Markdown,
+  StandardModal,
 } from '../../shared/components';
-import StandardModal from '../components/StandardModal';
 import {
   COLORS, PROPSHAPES, space, padded
 } from '../../shared/constants';

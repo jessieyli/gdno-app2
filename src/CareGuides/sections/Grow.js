@@ -11,8 +11,9 @@ import {
   Touchable,
   Paper,
   Markdown,
+  StandardModal,
 } from '../../shared/components';
-import StandardModal from '../components/StandardModal';
+
 import {
   PROPSHAPES, space, verticallyCentered, padded
 } from '../../shared/constants';
