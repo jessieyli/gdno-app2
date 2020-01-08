@@ -47,12 +47,13 @@ const Weather = ({
       const coords = getCoordsForZip(zip);
       fetchWeatherForCoordinates(coords.LAT, coords.LNG);
     } catch (e) {
-      setError(e);
+      setError(e.message);
     }
   };
 
   useEffect(() => {
     if (zipcode && zipcode !== 'loading') {
+      setError(null);
       fetchWeatherFromZip(zipcode);
     }
   }, [zipcode]);
