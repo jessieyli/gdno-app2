@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   ScrollView,
+  View,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import handleError from '../../shared/data/handleError';
-import { Touchable, PageLoader, ErrorState } from '../../shared/components';
-import { space } from '../../shared/constants';
+import {
+  Touchable, PageLoader, ErrorState, Type, Button
+} from '../../shared/components';
+import { space, centered } from '../../shared/constants';
 import PlantBlock from './PlantBlock';
 import { loadStoredPlants } from '../data';
 
@@ -17,14 +20,19 @@ const styles = StyleSheet.create({
   },
   plants: {
     marginVertical: space[2],
-    // display: 'flex',
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // flexWrap: 'wrap'
   },
   spaced: {
     marginRight: space[2],
     marginBottom: space[2],
+  },
+  emptyState: {
+    flex: 1,
+    ...centered,
+    padding: space[2],
+    textAlign: 'center'
+  },
+  topMargin: {
+    marginTop: space[2],
   }
 });
 
@@ -95,24 +103,41 @@ const MySavedPlants = ({
   };
 
   return (
-    <ScrollView horizontal style={[styles.plants, style]} {...passedProps}>
-      {plants.map(plant => (
-        <Touchable onPress={handlePlantPress(plant.name)} key={plant.name}>
-          <PlantBlock
-            style={styles.spaced}
-            name={plant.name}
-            nickname={plant.nickname || ''}
-            imageUrl={plant.images ? plant.images[0].thumbnails.large.url : ''}
-          />
-        </Touchable>
-      ))}
-    </ScrollView>
+    <>
+      {plants && plants.length > 0
+        ? (
+          <ScrollView horizontal style={[styles.plants, style]} {...passedProps}>
+            {plants.map(plant => (
+              <Touchable onPress={handlePlantPress(plant.name)} key={plant.name}>
+                <PlantBlock
+                  style={styles.spaced}
+                  name={plant.name}
+                  nickname={plant.nickname || ''}
+                  imageUrl={plant.images ? plant.images[0].thumbnails.large.url : ''}
+                />
+              </Touchable>
+            ))
+        }
+          </ScrollView>
+        )
+        : (
+          <View style={styles.emptyState}>
+            <Type size={18} align="center" italic weight="light">Your garden is looking a bit empty!</Type>
+            <View style={styles.topMargin}>
+              <Button onPress="AddCareGuides">Let&apos;s get growing</Button>
+            </View>
+          </View>
+        )
+      }
+    </>
   );
 };
 
 MySavedPlants.propTypes = {
   navigate: PropTypes.func.isRequired,
-  reloadToggle: PropTypes.bool,
+  style: PropTypes.object,
+  signout: PropTypes.func,
+  reloadToggle: PropTypes.number,
 };
 
 export default MySavedPlants;
