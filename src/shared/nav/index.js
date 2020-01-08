@@ -5,7 +5,7 @@ import { View, Image } from 'react-native';
 import logo from '../assets/icon-transparent.png';
 import PersonIcon from '../components/PersonIcon';
 import PersonalHome from '../../Home/PersonalHome';
-import MyCareGuides from '../../CareGuides/MyCareGuides';
+import AddCareGuides from '../../CareGuides/AddCareGuides';
 import CareGuide from '../../CareGuides/CareGuide';
 import Settings from '../../Auth/Settings';
 import EditSettings from '../../Auth/EditSettings';
@@ -38,10 +38,10 @@ const MainNavigation = createStackNavigator(
         ),
       }),
     },
-    CareGuides: {
-      screen: MyCareGuides,
+    AddCareGuides: {
+      screen: AddCareGuides,
       navigationOptions: () => ({
-        headerTitle: 'My Plants',
+        headerTitle: 'Add Care Guides',
         ...centeredHeader,
       }),
     },
