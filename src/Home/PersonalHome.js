@@ -102,7 +102,7 @@ const PersonalHome = (props) => {
             <DetailHeader weight="bold">My plants</DetailHeader>
           </Media.Body>
           <Media.Item>
-            <Touchable onPress="NewPlant" hitSlop={hitSlop}>
+            <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
               <Type color="grass" weight="bold">Add a plant</Type>
             </Touchable>
           </Media.Item>
