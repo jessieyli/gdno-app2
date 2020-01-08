@@ -5,9 +5,9 @@ import { ThumbnailWithFallback, Type } from '../../shared/components';
 
 const styles = StyleSheet.create({
   plantBlock: {
-    width: 100,
+    width: 120,
     height: 150,
-    paddingHorizontal: space[1],
+    paddingHorizontal: space[2],
     paddingVertical: space[2],
     backgroundColor: COLORS.white,
     borderWidth: 2,
