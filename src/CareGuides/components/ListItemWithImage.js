@@ -6,8 +6,9 @@ import {
 import PropTypes from 'prop-types';
 
 import { COLORS, space } from '../../shared/constants';
-import { Body, Touchable, Cross } from '../../shared/components';
-import ThumbnailWithFallback from './ThumbnailWithFallback';
+import {
+  Body, Touchable, Cross, ThumbnailWithFallback
+} from '../../shared/components';
 import SelectIndicator from './SelectIndicator';
 
 const ListItemWithImage = ({
