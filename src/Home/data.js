@@ -20,6 +20,8 @@ export const loadStoredPlants = async () => {
   }
 };
 
+export const getSavedZipcode = () => getValue('S_zipcode');
+
 export const loadWeatherDataFromCoords = async (lat, lng) => {
   let weatherData;
   // TODO: replace URL with function url

@@ -298,7 +298,7 @@ const zipMap = {
 
 const getCoordsForZip = (zip) => {
   const zipcode = zipMap[`ZIP_${zip}`];
-  if (!zipcode) throw Error('That zipcode is outside of our servicable area');
+  if (!zipcode) throw Error('Your account zipcode is outside of our servicable area');
   return zipcode;
 };
 

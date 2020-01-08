@@ -16,7 +16,7 @@ import { useAuth } from '../shared/use-auth';
 import handleError from '../shared/data/handleError';
 import Weather from './components/Weather';
 import MySavedPlants from './components/MySavedPlants';
-import { getZipcodeForUserId } from './data';
+import { getSavedZipcode } from './data';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,12 +54,11 @@ const PersonalHome = (props) => {
   const [loadingZipcode, setLoadingZipcode] = useState(false);
   const auth = useAuth();
 
-  const getZipForUser = (uid) => {
+  const loadZipcode = () => {
     setLoadingZipcode(true);
-    getZipcodeForUserId(uid)
-      .then((result) => {
-        const settings = result.data();
-        setZipcode(settings.zipcode);
+    getSavedZipcode()
+      .then((zip) => {
+        setZipcode(zip);
         setLoadingZipcode(false);
       })
       .catch((err) => {
@@ -69,10 +68,8 @@ const PersonalHome = (props) => {
   };
 
   useEffect(() => {
-    if (auth.user) {
-      getZipForUser(auth.user.uid);
-    }
-  }, [auth]);
+    loadZipcode();
+  }, []);
 
   return (
     <ScrollView style={styles.container}>

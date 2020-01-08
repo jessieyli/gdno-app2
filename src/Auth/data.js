@@ -40,14 +40,37 @@ export const getStoredUser = async () => {
   return result;
 };
 
+export const getStoredInfo = async () => {
+  let uid;
+  let zipcode;
+  try {
+    uid = await getValue('S_uid');
+    zipcode = await getValue('S_zipcode');
+  } catch (e) {
+    handleError(e);
+    throw new Error('There was a problem fetching stored data');
+  }
+  return {
+    uid,
+    zipcode,
+  };
+};
+
 export const getSettings = async authUser => firebase
   .firestore()
   .collection('users')
   .doc(authUser.uid)
   .get();
 
+const storeZipcode = (zipcode) => {
+  setValue('S_zipcode', zipcode);
+};
+
 export const addUserSettings = async (uid, settings) => {
   const userSettings = getValidKeypairs(settings, settingsKeys);
+  if (settings.zipcode) {
+    storeZipcode(settings.zipcode);
+  }
   return firebase.firestore().collection('users').doc(uid).set(userSettings, { merge: true });
 };
 
