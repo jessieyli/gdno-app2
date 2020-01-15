@@ -13,6 +13,7 @@ import { loadWeatherDataFromCoords, getCoordsForZip } from '../data';
 const styles = StyleSheet.create({
   weather: {
     paddingVertical: space[2],
+    paddingLeft: space[2],
   },
   loadingWrapper: {
     padding: space[4],
@@ -81,7 +82,7 @@ const Weather = ({
           <WeatherBlock key={day.time} {...day} />
         ))}
       </ScrollView>
-      <RelatableWeather dailyData={weatherDays || []} />
+      <RelatableWeather style={{ margin: space[2] }} dailyData={weatherDays || []} />
     </>
   );
 };

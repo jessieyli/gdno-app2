@@ -21,7 +21,10 @@ import { getSavedZipcode } from './data';
 
 const styles = StyleSheet.create({
   container: {
-    padding: space[2],
+    paddingVertical: space[2],
+  },
+  sidePadding: {
+    paddingHorizontal: space[2],
   },
   weatherSection: {
     marginBottom: space[3],
@@ -38,11 +41,12 @@ const styles = StyleSheet.create({
     marginBottom: space[2],
   },
   plantTitles: {
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    paddingHorizontal: space[2],
   },
   infoBox: {
     backgroundColor: COLORS.blueTint,
-    padding: space[3],
+    padding: space[4],
     marginVertical: space[2],
   },
   infoBoxText: {
@@ -91,9 +95,13 @@ const PersonalHome = (props) => {
       >
         <View style={styles.container}>
           <View style={styles.weatherSection}>
-            <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
+            <View style={styles.sidePadding}>
+              <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
+            </View>
             {zipcode || loadingZipcode ? (
-              <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
+              <View style={{ paddingVertical: space[2] }}>
+                <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
+              </View>
             ) : (
               <View style={styles.infoBox}>
                 <View style={styles.infoBoxText}>
@@ -122,6 +130,7 @@ const PersonalHome = (props) => {
               reloadToggle={reloadPlantsToggle}
               navigate={props.navigation.navigate}
               signout={auth.signout}
+              style={{ paddingLeft: space[2] }}
             />
           </View>
         </View>
