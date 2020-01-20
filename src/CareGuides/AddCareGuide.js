@@ -3,7 +3,8 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
-  Picker
+  Picker,
+  Alert,
 } from 'react-native';
 
 import handleError from '../shared/data/handleError';
@@ -80,8 +81,27 @@ const AddCareGuideScreen = ({ navigation }) => {
     );
   };
 
+  const triggerErrorMessage = (message = 'Something went wrong. Please try again later.') => (
+    Alert.alert(
+      'Well, darn.',
+      message,
+      [
+        {
+          text: 'Log Out',
+          onPress: () => {
+            auth.signout();
+            navigation.navigate('Welcome');
+          }
+        },
+      ]
+    )
+  );
+
   const handleDownloadPress = () => {
-    if (!auth.user || !auth.user.uid || !selection || !selection.id) return;
+    if (!auth.user || !auth.user.uid || !selection || !selection.id) {
+      triggerErrorMessage('Something went wrong. Try logging in again and contact us if it persists.');
+      return;
+    }
     setError(false);
     setLoading(true);
     downloadPlant(auth.user.uid, selection)
