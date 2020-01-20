@@ -16,7 +16,7 @@ import {
 } from '../shared/components';
 
 import {
-  getPlantList, savePlantForUser
+  getPlantList, downloadPlant
 } from './data';
 
 const styles = StyleSheet.create({
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
 const defaultSelection = { label: 'Pick yer plant', id: null };
 
-const AddCareGuidesScreen = ({ navigation }) => {
+const AddCareGuideScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [plantList, setPlantList] = useState([]);
@@ -74,18 +74,21 @@ const AddCareGuidesScreen = ({ navigation }) => {
       });
   };
 
-  const handlePlantSelect = (plant) => {
-    setSelection(plant);
+  const handlePlantSelect = (plantId) => {
+    setSelection(
+      [...plantList, defaultSelection].find(p => p.id === plantId)
+    );
   };
 
   const handleDownloadPress = () => {
     if (!auth.user || !auth.user.uid || !selection || !selection.id) return;
     setError(false);
     setLoading(true);
-    savePlantForUser(auth.user.uid, selection)
+    downloadPlant(auth.user.uid, selection)
       .then(() => {
         setLoading(false);
         navigation.goBack();
+        navigation.state.params.onGoBack();
       })
       .catch((err) => {
         handleError(err);
@@ -126,9 +129,7 @@ const AddCareGuidesScreen = ({ navigation }) => {
                 style={styles.plantPicker}
                 selectedValue={selection.id}
                 onValueChange={
-                  value => setSelection(
-                    [...plantList, defaultSelection].find(p => p.id === value)
-                  )
+                  value => handlePlantSelect(value)
                 }
               >
                 <Picker.Item label={defaultSelection.label} value={defaultSelection.id} />
@@ -138,17 +139,6 @@ const AddCareGuidesScreen = ({ navigation }) => {
               </Picker>
             </View>
           )
-          /*
-          <PlantList
-            plants={plantList}
-            onPress={handlePlantSelect}
-            selectable
-            style={styles.padded}
-            selectedList={selectedPlantIds}
-            addedList={storedPlants.map(p => p.id)}
-            footer={(<View style={{ paddingVertical: space[3] }}><SectionTitle align="center">More coming soon.</SectionTitle></View>)}
-          />
-          */
         }
       </Media.Body>
       <Media.Item style={styles.bottomButton}>
@@ -163,8 +153,8 @@ const AddCareGuidesScreen = ({ navigation }) => {
   );
 };
 
-AddCareGuidesScreen.propTypes = {
+AddCareGuideScreen.propTypes = {
   navigation: PROPSHAPES.navigation,
 };
 
-export default AddCareGuidesScreen;
+export default AddCareGuideScreen;

@@ -107,7 +107,7 @@ const SettingsScreen = ({ navigation }) => {
       <SafeAreaView style={ss.safeArea}>
         <Media>
           <Media.Body style={ss.centered}>
-            <ActivityIndicator />
+            <ActivityIndicator size="large" />
           </Media.Body>
           <Media.Item>
             <Button color="danger" onPress={handleSignOut}>Log Out</Button>

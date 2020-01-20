@@ -91,6 +91,12 @@ const PersonalHome = (props) => {
     setReloadPlantsToggle(reloadPlantsToggle * -1);
   };
 
+  const handleAddPlantPress = () => {
+    props.navigation.navigate('AddCareGuide', {
+      onGoBack: () => handleRefresh(),
+    });
+  };
+
   const handleFeedbackPress = () => {
     Linking
       .openURL(LINKS.feedbackForm)
@@ -136,16 +142,16 @@ const PersonalHome = (props) => {
                 <DetailHeader weight="bold">My plants</DetailHeader>
               </Media.Body>
               <Media.Item>
-                <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
+                <Touchable onPress={handleAddPlantPress} hitSlop={hitSlop}>
                   <Type color="grass" weight="bold">Add a plant</Type>
                 </Touchable>
               </Media.Item>
             </Media>
             <MySavedPlants
+              onAddPlant={handleAddPlantPress}
               reloadToggle={reloadPlantsToggle}
               navigate={props.navigation.navigate}
               signout={auth.signout}
-              style={{ paddingLeft: space[2] }}
             />
           </View>
           <View style={styles.feedbackSection}>

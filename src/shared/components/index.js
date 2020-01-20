@@ -20,6 +20,7 @@ export { default as ThumbnailWithFallback } from './ThumbnailWithFallback';
 export { default as Chevron } from './Chevron';
 export { default as Cross } from './Cross';
 export { default as ShoppingCart } from './ShoppingCart';
+export { default as Trash } from './Trash';
 
 /* STAR SYSTEMS */
 export { default as Touchable } from './Touchable';

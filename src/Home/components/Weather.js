@@ -65,7 +65,7 @@ const Weather = ({
   if (loading || loadingZipcode) {
     return (
       <View style={styles.loadingWrapper}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
       </View>
     );
   }
