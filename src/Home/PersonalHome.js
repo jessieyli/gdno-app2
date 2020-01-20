@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const PersonalHome = (props) => {
+const PersonalHome = ({ navigation }) => {
   const [zipcode, setZipcode] = useState(null);
   const [loadingZipcode, setLoadingZipcode] = useState(false);
   const [reloadPlantsToggle, setReloadPlantsToggle] = useState(1);
@@ -86,13 +86,17 @@ const PersonalHome = (props) => {
       });
   };
 
-  const handleRefresh = () => {
-    loadZipcode();
+  const refreshPlants = () => {
     setReloadPlantsToggle(reloadPlantsToggle * -1);
   };
 
+  const handleRefresh = () => {
+    loadZipcode();
+    refreshPlants();
+  };
+
   const handleAddPlantPress = () => {
-    props.navigation.navigate('AddCareGuide', {
+    navigation.navigate('AddCareGuide', {
       onGoBack: () => handleRefresh(),
     });
   };
@@ -102,6 +106,14 @@ const PersonalHome = (props) => {
       .openURL(LINKS.feedbackForm)
       .catch(() => {});
   };
+
+  useEffect(() => {
+    if (
+      navigation.getParam('refresh', false) === true
+    ) {
+      refreshPlants();
+    }
+  }, [navigation]);
 
   useEffect(() => {
     loadZipcode();
@@ -150,7 +162,7 @@ const PersonalHome = (props) => {
             <MySavedPlants
               onAddPlant={handleAddPlantPress}
               reloadToggle={reloadPlantsToggle}
-              navigate={props.navigation.navigate}
+              navigate={navigation.navigate}
               signout={auth.signout}
             />
           </View>
@@ -174,6 +186,7 @@ const PersonalHome = (props) => {
 PersonalHome.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
   }).isRequired,
 };
 

@@ -63,6 +63,8 @@ const CareGuide = ({
 
   useEffect(() => {
     getCurrentPlantInfo();
+
+    return () => setLoading(false);
   }, []);
 
   const triggerErrorMessage = (message = 'Something went wrong. Please try again later.') => (
@@ -83,13 +85,16 @@ const CareGuide = ({
       triggerErrorMessage();
       return;
     }
-    try {
-      deletePlantById(uid, id);
-      navigation.goBack();
-    } catch (e) {
-      handleError(e);
-      triggerErrorMessage();
-    }
+    setLoading(true);
+    deletePlantById(uid, id)
+      .then(() => {
+        navigation.navigate('Home', {
+          refresh: true,
+        });
+      })
+      .catch(() => {
+        triggerErrorMessage();
+      });
   }, [navigation, auth]);
 
   const handleUpdatePlant = useCallback((updates) => {
@@ -148,7 +153,9 @@ const CareGuide = ({
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
         <TitleBar
-          onClickBack={() => navigation.goBack()}
+          onClickBack={() => navigation.navigate('Home', {
+            refresh: true,
+          })}
           nickname={info.nickname}
           species={info.name}
           imageUrl={info.thumbnail}
