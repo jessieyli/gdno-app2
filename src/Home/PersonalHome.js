@@ -8,7 +8,7 @@ import {
 import PropTypes from 'prop-types';
 
 import {
-  Touchable, Type, DetailHeader, Media, Button,
+  Touchable, Type, DetailHeader, Media, Button, ScreenWithBottomNav,
 } from '../shared/components';
 import {
   space, COLORS, hitSlop,
@@ -21,7 +21,10 @@ import { getSavedZipcode } from './data';
 
 const styles = StyleSheet.create({
   container: {
-    padding: space[2],
+    paddingVertical: space[2],
+  },
+  sidePadding: {
+    paddingHorizontal: space[2],
   },
   weatherSection: {
     marginBottom: space[3],
@@ -38,15 +41,20 @@ const styles = StyleSheet.create({
     marginBottom: space[2],
   },
   plantTitles: {
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    paddingHorizontal: space[2],
   },
   infoBox: {
     backgroundColor: COLORS.blueTint,
-    padding: space[3],
+    padding: space[4],
     marginVertical: space[2],
   },
   infoBoxText: {
     marginBottom: space[2],
+  },
+  bottomNavWrapper: {
+    backgroundColor: COLORS.magenta,
+    padding: space[1],
   }
 });
 
@@ -79,48 +87,55 @@ const PersonalHome = (props) => {
   }, []);
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={loadingZipcode} onRefresh={handleRefresh} />
-      }
-    >
-      <View style={styles.container}>
-        <View style={styles.weatherSection}>
-          <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
-          {zipcode || loadingZipcode ? (
-            <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
-          ) : (
-            <View style={styles.infoBox}>
-              <View style={styles.infoBoxText}>
-                <Type>
-                  We can&apos;t show you the kind of weather your plants will
-                   experience because you don&apos;t have your zipcode set.
-                </Type>
-              </View>
-              <Button onPress="Settings">Add your Zipcode</Button>
+    <ScreenWithBottomNav current="home">
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={loadingZipcode} onRefresh={handleRefresh} />
+        }
+      >
+        <View style={styles.container}>
+          <View style={styles.weatherSection}>
+            <View style={styles.sidePadding}>
+              <DetailHeader weight="bold">What&apos;s it like outside?</DetailHeader>
             </View>
-          )}
+            {zipcode || loadingZipcode ? (
+              <View style={{ paddingVertical: space[2] }}>
+                <Weather zipcode={zipcode} loadingZipcode={loadingZipcode} />
+              </View>
+            ) : (
+              <View style={styles.infoBox}>
+                <View style={styles.infoBoxText}>
+                  <Type>
+                We can&apos;t show you the kind of weather your plants will
+                 experience because you don&apos;t have your zipcode set.
+                  </Type>
+                </View>
+                <Button onPress="Settings">Add your Zipcode</Button>
+              </View>
+            )}
 
+          </View>
+          <View style={styles.plantsSection}>
+            <Media direction="row" style={styles.plantTitles}>
+              <Media.Body>
+                <DetailHeader weight="bold">My plants</DetailHeader>
+              </Media.Body>
+              <Media.Item>
+                <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
+                  <Type color="grass" weight="bold">Add a plant</Type>
+                </Touchable>
+              </Media.Item>
+            </Media>
+            <MySavedPlants
+              reloadToggle={reloadPlantsToggle}
+              navigate={props.navigation.navigate}
+              signout={auth.signout}
+              style={{ paddingLeft: space[2] }}
+            />
+          </View>
         </View>
-        <View style={styles.plantsSection}>
-          <Media direction="row" style={styles.plantTitles}>
-            <Media.Body>
-              <DetailHeader weight="bold">My plants</DetailHeader>
-            </Media.Body>
-            <Media.Item>
-              <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
-                <Type color="grass" weight="bold">Add a plant</Type>
-              </Touchable>
-            </Media.Item>
-          </Media>
-          <MySavedPlants
-            reloadToggle={reloadPlantsToggle}
-            navigate={props.navigation.navigate}
-            signout={auth.signout}
-          />
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </ScreenWithBottomNav>
   );
 };
 
