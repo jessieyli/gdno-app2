@@ -24,7 +24,7 @@ export const fetchUserPlants = userId => firebase
   .firestore()
   .collection('users')
   .doc(userId)
-  .collection('my_plants')
+  .collection('myPlants')
   .get()
   .then((querySnapshot) => {
     const plantList = [];

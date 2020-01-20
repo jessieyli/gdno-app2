@@ -117,7 +117,7 @@ const MySavedPlants = ({
               <Touchable onPress={handlePlantPress(plant)} key={plant.id}>
                 <PlantBlock
                   style={styles.spaced}
-                  name={plant.name}
+                  species={plant.species}
                   nickname={plant.nickname || ''}
                   imageUrl={plant.thumbnail}
                 />

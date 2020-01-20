@@ -13,7 +13,7 @@ import {
 } from '../shared/data/localStorage';
 
 export const getPlantList = () => {
-  const query = firebase.firestore().collection('plantList').orderBy('name');
+  const query = firebase.firestore().collection('speciesList').orderBy('name');
   return query.get().then((querySnapshot) => {
     const plantList = [];
     querySnapshot.forEach((doc) => {
@@ -44,7 +44,7 @@ const updateUserPlantInDb = (userId, id, updates) => firebase
   .firestore()
   .collection('users')
   .doc(userId)
-  .collection('my_plants')
+  .collection('myPlants')
   .doc(id)
   .update(updates)
   .then(() => updates);
@@ -53,7 +53,7 @@ const deleteUserPlantInDb = (userId, id) => firebase
   .firestore()
   .collection('users')
   .doc(userId)
-  .collection('my_plants')
+  .collection('myPlants')
   .doc(id)
   .delete()
   .then(() => true);
@@ -85,7 +85,7 @@ export const getPlantInfoById = async (id) => {
   let species;
   try {
     plant = await retrievePlant(id);
-    species = await retrieveSpecies(plant.plantId);
+    species = await retrieveSpecies(plant.speciesId);
   } catch (e) {
     handleError(e);
     throw e;
@@ -96,16 +96,16 @@ export const getPlantInfoById = async (id) => {
   };
 };
 
-const fetchAndSavePlantSpecies = async (plantId) => {
-  let plant;
+const fetchAndSavePlantSpecies = async (speciesId) => {
+  let speciesInfo;
   try {
     const result = await firebase
       .firestore()
-      .collection('plants')
-      .doc(plantId)
+      .collection('species')
+      .doc(speciesId)
       .get();
-    plant = result.data();
-    return storeSpecies(plantId, plant);
+    speciesInfo = result.data();
+    return storeSpecies(speciesId, speciesInfo);
   } catch (e) {
     throw e;
   }
@@ -118,7 +118,7 @@ export const storeUserPlant = async (dbId, plant) => {
   } catch (e) {
     handleError(e);
   }
-  return fetchAndSavePlantSpecies(plant.plantId, result);
+  return fetchAndSavePlantSpecies(plant.speciesId, result);
 };
 
 export const downloadPlant = (userId, plantOverview) => {
@@ -126,15 +126,15 @@ export const downloadPlant = (userId, plantOverview) => {
   if (!userId) throw new Error('Missing User Id');
   const now = Date.now();
   const plant = {
-    plantId: plantOverview.id,
-    name: plantOverview.name,
+    speciesId: plantOverview.id,
+    species: plantOverview.name,
     thumbnail: plantOverview.thumbnail,
     plantedTimestamp: now,
     nickname: '',
     notificationsEnabled: false,
     lastWatered: now,
   };
-  return db.collection('users').doc(userId).collection('my_plants').add(plant)
+  return db.collection('users').doc(userId).collection('myPlants').add(plant)
     .then(docRef => docRef.id)
     .then(docId => storeUserPlant(docId, plant))
     .catch(err => handleError(err));

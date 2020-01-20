@@ -56,7 +56,7 @@ const defaultSelection = { label: 'Pick yer plant', id: null };
 const AddCareGuideScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [plantList, setPlantList] = useState([]);
+  const [speciesList, setSpeciesList] = useState([]);
   const [selection, setSelection] = useState(defaultSelection);
   const auth = useAuth();
 
@@ -65,7 +65,7 @@ const AddCareGuideScreen = ({ navigation }) => {
     setError(false);
     getPlantList()
       .then((plants) => {
-        setPlantList(plants);
+        setSpeciesList(plants);
         setLoading(false);
       })
       .catch((err) => {
@@ -75,9 +75,9 @@ const AddCareGuideScreen = ({ navigation }) => {
       });
   };
 
-  const handlePlantSelect = (plantId) => {
+  const handlePlantSelect = (speciesId) => {
     setSelection(
-      [...plantList, defaultSelection].find(p => p.id === plantId)
+      [...speciesList, defaultSelection].find(s => s.id === speciesId)
     );
   };
 
@@ -126,7 +126,7 @@ const AddCareGuideScreen = ({ navigation }) => {
   return (
     <Media style={styles.container}>
       <Media.Body>
-        {loading || !plantList || plantList.length === 0
+        {loading || !speciesList || speciesList.length === 0
           ? (
             <View style={styles.centered}>
               <ActivityIndicator size="large" color={COLORS.magenta} />
@@ -153,8 +153,8 @@ const AddCareGuideScreen = ({ navigation }) => {
                 }
               >
                 <Picker.Item label={defaultSelection.label} value={defaultSelection.id} />
-                {plantList.map(plant => (
-                  <Picker.Item key={plant.id} label={plant.name} value={plant.id} />
+                {speciesList.map(species => (
+                  <Picker.Item key={species.id} label={species.name} value={species.id} />
                 ))}
               </Picker>
             </View>
