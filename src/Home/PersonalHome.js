@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   RefreshControl,
+  Linking,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -11,7 +12,7 @@ import {
   Touchable, Type, DetailHeader, Media, Button, ScreenWithBottomNav,
 } from '../shared/components';
 import {
-  space, COLORS, hitSlop,
+  space, COLORS, hitSlop, LINKS,
 } from '../shared/constants';
 import { useAuth } from '../shared/use-auth';
 import handleError from '../shared/data/handleError';
@@ -52,6 +53,14 @@ const styles = StyleSheet.create({
   infoBoxText: {
     marginBottom: space[2],
   },
+  feedbackSection: {
+    paddingHorizontal: space[2],
+    paddingVertical: space[3],
+  },
+  feedbackBodyWrapper: {
+    paddingTop: space[1],
+    paddingBottom: space[2],
+  },
   bottomNavWrapper: {
     backgroundColor: COLORS.magenta,
     padding: space[1],
@@ -80,6 +89,12 @@ const PersonalHome = (props) => {
   const handleRefresh = () => {
     loadZipcode();
     setReloadPlantsToggle(reloadPlantsToggle * -1);
+  };
+
+  const handleFeedbackPress = () => {
+    Linking
+      .openURL(LINKS.feedbackForm)
+      .catch(() => {});
   };
 
   useEffect(() => {
@@ -132,6 +147,17 @@ const PersonalHome = (props) => {
               signout={auth.signout}
               style={{ paddingLeft: space[2] }}
             />
+          </View>
+          <View style={styles.feedbackSection}>
+            <DetailHeader weight="bold">How can we do better?</DetailHeader>
+            <View style={styles.feedbackBodyWrapper}>
+              <Type>
+              We are trying to make the best #@$& app out there for growing your
+               own food, so we want to hear from our community! What do you
+                like? What can we do better?
+              </Type>
+            </View>
+            <Button onPress={handleFeedbackPress}>Tell us your thoughts</Button>
           </View>
         </View>
       </ScrollView>

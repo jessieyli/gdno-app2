@@ -85,6 +85,7 @@ export const LINKS = {
   shop: 'https://growgardenio.com/',
   help: 'mailto:help@growgardenio.zendesk.com',
   feedback: 'mailto:feedback@growgardenio.zendesk.com',
+  feedbackForm: 'https://airtable.com/shrG3FFkxA7iXfqAv',
 };
 
 export const detailsScreens = {
