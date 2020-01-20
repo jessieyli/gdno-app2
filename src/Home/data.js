@@ -43,7 +43,7 @@ export const fetchUserPlants = userId => firebase
   });
 
 export const getSavedZipcode = async () => {
-  let info;
+  let info = {};
   try {
     info = await retrieveUser('user');
     return info.zipcode;

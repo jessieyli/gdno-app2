@@ -38,6 +38,7 @@ const setValue = async (key, type, value) => {
 };
 export const storePlant = (key, value) => setValue(key, 'plant', value);
 export const storeSpecies = (key, value) => setValue(key, 'species', value);
+export const setVersion = version => setValue('VERSION', 'info', version);
 
 const getValue = async (key, type) => {
   let value;
@@ -56,6 +57,7 @@ const getValue = async (key, type) => {
 export const retrievePlant = key => getValue(key, 'plant');
 export const retrieveSpecies = key => getValue(key, 'species');
 export const retrieveUser = () => getValue('INFO', 'user');
+export const retrieveVersion = () => getValue('VERSION', 'info');
 
 const updateValue = async (key, type, data) => {
   let existing;
