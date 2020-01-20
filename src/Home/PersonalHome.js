@@ -164,6 +164,7 @@ const PersonalHome = ({ navigation }) => {
               reloadToggle={reloadPlantsToggle}
               navigate={navigation.navigate}
               signout={auth.signout}
+              style={{ paddingLeft: space[2] }}
             />
           </View>
           <View style={styles.feedbackSection}>
