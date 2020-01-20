@@ -95,6 +95,7 @@ function useProvideAuth() {
     const unsubscribe = firebase.auth().onAuthStateChanged((u) => {
       if (u) {
         setUser(u);
+        setVersion(currentVersion);
         fetchAndSaveUserFeatures(u.uid);
       } else {
         setUser(null);
