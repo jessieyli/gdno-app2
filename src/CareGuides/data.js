@@ -73,7 +73,7 @@ export const updatePlantInfoById = async (
     throw err;
   });
 
-export const deletePlantById = async (userId, id) => deleteUserPlantInDb(userId, id)
+export const deletePlantById = (userId, id) => deleteUserPlantInDb(userId, id)
   .then(() => removeSavedPlant(id))
   .catch((err) => {
     handleError(err);

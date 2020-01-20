@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 });
 
 const EditablePlantName = ({ species, nickname, onSave }) => {
-  const [workingName, setWorkingName] = useState(nickname || 'Name your plant!');
+  const [workingName, setWorkingName] = useState(nickname || 'Name me!');
   const [editing, setEditing] = useState(false);
   const titleText = nickname || species;
 
