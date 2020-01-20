@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     paddingVertical: space[2],
     paddingLeft: space[2],
   },
+  relatableWeather: {
+    margin: space[2]
+  },
   loadingWrapper: {
     padding: space[4],
   }
@@ -82,7 +85,7 @@ const Weather = ({
           <WeatherBlock key={day.time} {...day} />
         ))}
       </ScrollView>
-      <RelatableWeather style={{ margin: space[2] }} dailyData={weatherDays || []} />
+      <RelatableWeather style={styles.relatableWeather} dailyData={weatherDays || []} />
     </>
   );
 };
