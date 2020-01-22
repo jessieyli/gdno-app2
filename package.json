@@ -1,9 +1,10 @@
 {
   "scripts": {
     "android": "react-native run-android",
+    "android-prod": "react-native run-android --variant release",
     "ios": "react-native run-ios",
+    "ios-prod": "react-native run-ios --configuration Release",
     "start": "react-native start",
-    "start-prod": "react-native start --no-dev --minify",
     "test": "jest",
     "build-ios": "expo build:ios",
     "build-android": "expo build:android -t app-bundle",
