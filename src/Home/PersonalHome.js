@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const PersonalHome = (props) => {
+const PersonalHome = ({ navigation }) => {
   const [zipcode, setZipcode] = useState(null);
   const [loadingZipcode, setLoadingZipcode] = useState(false);
   const [reloadPlantsToggle, setReloadPlantsToggle] = useState(1);
@@ -86,9 +86,19 @@ const PersonalHome = (props) => {
       });
   };
 
+  const refreshPlants = () => {
+    setReloadPlantsToggle(reloadPlantsToggle * -1);
+  };
+
   const handleRefresh = () => {
     loadZipcode();
-    setReloadPlantsToggle(reloadPlantsToggle * -1);
+    refreshPlants();
+  };
+
+  const handleAddPlantPress = () => {
+    navigation.navigate('AddCareGuide', {
+      onGoBack: () => handleRefresh(),
+    });
   };
 
   const handleFeedbackPress = () => {
@@ -96,6 +106,14 @@ const PersonalHome = (props) => {
       .openURL(LINKS.feedbackForm)
       .catch(() => {});
   };
+
+  useEffect(() => {
+    if (
+      navigation.getParam('refresh', false) === true
+    ) {
+      refreshPlants();
+    }
+  }, [navigation]);
 
   useEffect(() => {
     loadZipcode();
@@ -136,14 +154,15 @@ const PersonalHome = (props) => {
                 <DetailHeader weight="bold">My plants</DetailHeader>
               </Media.Body>
               <Media.Item>
-                <Touchable onPress="AddCareGuides" hitSlop={hitSlop}>
+                <Touchable onPress={handleAddPlantPress} hitSlop={hitSlop}>
                   <Type color="grass" weight="bold">Add a plant</Type>
                 </Touchable>
               </Media.Item>
             </Media>
             <MySavedPlants
+              onAddPlant={handleAddPlantPress}
               reloadToggle={reloadPlantsToggle}
-              navigate={props.navigation.navigate}
+              navigate={navigation.navigate}
               signout={auth.signout}
               style={{ paddingLeft: space[2] }}
             />
@@ -168,6 +187,7 @@ const PersonalHome = (props) => {
 PersonalHome.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
+    getParam: PropTypes.func.isRequired,
   }).isRequired,
 };
 
